@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz Bowl</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag "QuizBowlLogo.png" %>
+  <style type="text/css">
+	body { 
+    background-color:#99B5E8 no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+  </style>
+</head>
+<body>
+	<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Quiz Bowl</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="#">User Login</a></li>
+      <li><a href="#">Bar Login</a></li>
+      <li class="has-dropdown">
+        <a href="#">About Us</a>
+        <ul class="dropdown">
+          <li><a href="#">Why QuizBowl</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li><a href="#">Sign Up!</a></li>
+    </ul>
+  </section>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
