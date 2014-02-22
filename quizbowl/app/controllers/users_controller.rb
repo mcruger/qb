@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     	u.password = params["password"]
     	u.age = params["age"]
     	u.ranking = params["ranking"]
-    	u.top_score = params["top_score"]
+    	u.high_score = params["high_score"]
     	u.save
     	redirect_to users_url
 	end
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     	u.password = params["password"]
     	u.age = params["age"]
     	u.ranking = params["ranking"]
-    	u.top_score = params["top_score"]
+    	u.high_score = params["high_score"]
     	u.save
     	redirect_to users_url
 	end
