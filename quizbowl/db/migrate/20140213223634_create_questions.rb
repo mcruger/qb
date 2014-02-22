@@ -18,7 +18,7 @@ class CreateQuestions < ActiveRecord::Migration
   		t.string :email
   		t.string :first
   		t.string :last
-  		t.datetime :dob
+      t.integer :age
   		t.integer :high_score
   		t.integer :ranking
   		t.string :city

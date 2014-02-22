@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 20140213223634) do
   end
 
   create_table "hosts", force: true do |t|
-    t.string   "name"
+    t.string   "host_name"
+    t.string   "primary_contact_name"
     t.string   "email"
     t.string   "add_l1"
     t.string   "add_l2"
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.integer  "zip"
     t.integer  "game_count"
     t.string   "phone_num"
+    t.string   "password"
+    t.text     "password_hint"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.integer  "ranking"
     t.string   "city"
     t.string   "state"
+    t.string   "sex"
     t.integer  "zip"
     t.string   "password"
     t.text     "pass_hint"
