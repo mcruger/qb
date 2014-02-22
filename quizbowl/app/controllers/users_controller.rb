@@ -7,6 +7,21 @@ class UsersController < ApplicationController
 
 	#create the user in database from the form
 	def create
+		u = User.new
+		u.username = params["username"]
+    	u.first = params["first"]
+    	u.last = params["last"]
+    	u.sex = params["sex"]
+    	u.email = params["email"]
+    	u.city = params["city"]
+    	u.state = params["state"]
+    	u.zip = params["zip"]
+    	u.password = params["password"]
+    	u.age = params["age"]
+    	u.ranking = params["ranking"]
+    	u.top_score = params["top_score"]
+    	u.save
+    	redirect_to "/users"
 	end
 
 

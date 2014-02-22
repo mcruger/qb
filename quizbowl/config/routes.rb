@@ -5,18 +5,33 @@ Quizbowl::Application.routes.draw do
 
   ############## USER ROUTES ###############
   #CREATE
-  get "/user/new" => 'user#signup'						#render the form for a user to signup
-  post "/user" => 'user#create'							#create the user in database from the form
+  get "/users/new" => 'users#signup'						#render the form for a user to signup
+  post "/users" => 'users#create'							#create the user in database from the form
 
   #READ
-  get "/user" => 'user#profile'							#show user their profile
+  get "/users" => 'users#profile'							#show user their profile
 
   #UPDATE
-  get "/user/edit/:user_id" => 'user#edit'				#allow user to edit their profile
-  patch "/user/:user_id" => 'user#update'				#rendered upon editing profile
+  get "/users/edit/:user_id" => 'users#edit'				#allow user to edit their profile
+  patch "/users/:user_id" => 'users#update'				#rendered upon editing profile
 
   #DELETE
-  delete "/user/:user_id" => 'user#delete_account' 		#allow user to delete their account
+  delete "/users/:user_id" => 'users#delete_account' 		#allow user to delete their account
+
+  ############## HOSTS ROUTES ###############
+  #CREATE
+  get "/hosts/new" => 'hosts#signup'            #render the form for a user to signup
+  post "/hosts" => 'hosts#create'             #create the user in database from the form
+
+  #READ
+  get "/hosts" => 'hosts#profile'             #show user their profile
+
+  #UPDATE
+  get "/hosts/edit/:user_id" => 'hosts#edit'        #allow user to edit their profile
+  patch "/hosts/:user_id" => 'hosts#update'       #rendered upon editing profile
+
+  #DELETE
+  delete "/hosts/:user_id" => 'hosts#delete_account'    #allow user to delete their account
   
 
 end
