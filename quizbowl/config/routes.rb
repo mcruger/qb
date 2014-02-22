@@ -2,7 +2,10 @@ Quizbowl::Application.routes.draw do
 
   root 'home#index'									#uses homes_controller to render the home page
 
+  resources :users
+  resources :hosts
 
+=begin
   ############## USER ROUTES ###############
   #CREATE
   get "/users/new" => 'users#signup'						#render the form for a user to signup
@@ -32,7 +35,7 @@ Quizbowl::Application.routes.draw do
 
   #DELETE
   delete "/hosts/:user_id" => 'hosts#delete_account'    #allow user to delete their account
-  
+=end
 
 end
 
