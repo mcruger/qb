@@ -23,6 +23,7 @@ class CreateQuestions < ActiveRecord::Migration
   		t.integer :ranking
   		t.string :city
   		t.string :state
+      t.string :sex
   		t.integer :zip
   		t.string :password
   		t.text :pass_hint
@@ -30,7 +31,8 @@ class CreateQuestions < ActiveRecord::Migration
   	end
 
   	create_table :hosts do |t|
-  		t.string :name
+  		t.string :host_name
+      t.string :primary_contact_name
   		t.string :email
   		t.string :add_l1
   		t.string :add_l2
@@ -39,6 +41,8 @@ class CreateQuestions < ActiveRecord::Migration
   		t.integer :zip
   		t.integer :game_count
   		t.string :phone_num
+      t.string :password
+      t.text :password_hint
   		t.timestamps
   	end	
 
