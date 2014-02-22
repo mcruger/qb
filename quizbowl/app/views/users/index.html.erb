@@ -9,7 +9,7 @@
   <h4>Sign Up! Everybody's doing it!</h4>
 </div>
 
-<%= form_tag "/movies", :method => 'post' do %>
+<%= form_tag users_url, :method => 'post' do %>
       <div class="form-group">
         <label for="first">Username:</label>
         <input type="string" name="username" class="form-control" id="username" placeholder="Username">
