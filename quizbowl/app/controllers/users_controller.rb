@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     	u.ranking = params["ranking"]
     	u.high_score = params["high_score"]
     	u.save
-    	redirect_to 'home#index' #make login go away and say welcome
+    	redirect_to users_url #make login go away and say welcome
 	end
 
 
