@@ -5,6 +5,9 @@ class QuestionsController < ApplicationController
 		#puts @questions	
 	end
 
+	
+
+
 end
 
 =begin

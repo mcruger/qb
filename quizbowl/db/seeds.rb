@@ -29,25 +29,58 @@
 #   h.save
 # end
 
-questions = [{ :question => "In which sport would you use a chucker?",
-				:answer1 => "Badminton",
-				:answer2 => "Horseback Riding",
-				:answer3 =>	"Cricket",
-				:answer4 =>	"Lawn Bowling"},
-			{ :question => "What would a tailor do with his hot plonker?",
-				:answer1 => "Suring up a seam",
-				:answer2 => "Putting a fresh crease in pants",
-				:answer3 => "Ironing some cloth",
-				:answer4 => "Stretching shrunken clothes"}]
+
+questions = [
+			 {:question => "In which sport would you use a chucker?"},
+			 {:question => "What would a tailor do with his hot plonker?"}
+			]
 
 Question.destroy_all
 
 questions.each do |ques|
     q = Question.new
     q.question = ques[:question]
-    q.answer1 = ques[:answer1]
-    q.answer2 = ques[:answer2]
-    q.answer3 = ques[:answer3]
-    q.answer4 = ques[:answer4]
 	q.save
  end
+
+=begin
+	
+rescue Exception => e
+	
+end
+answers = [{:question_id => 1,
+			:answer => "Badminton",
+			:is_correct => 0},
+			{:question_id => 1,
+			:answer => "Horseback Riding",
+			:is_correct => 0},
+			{:question_id => 1,
+			:answer => "Cricket",
+			:is_correct => 1},
+			{:question_id => 1,
+			:answer => "Badminton",
+			:is_correct => 0},
+			{:question_id => 2,
+			:answer => "Suring up a seam",
+			:is_correct => 0},
+			{:question_id => 2,
+			:answer => "Putting a fresh crease in pants",
+			:is_correct => 0},
+			{:question_id => 2,
+			:answer => "Ironing some cloth",
+			:is_correct => 1},
+			{:question_id => 2,
+			:answer => "Stretching shrunken clothes",
+			:is_correct => 0}]
+
+
+Answer.destroy_all
+
+answers.each do |ans|
+    a = Answer.new
+    a.question_id = a[:question_id]
+    a.answer = a[:answer]
+    a.is_correct = a[:is_correct]
+	a.save
+ end
+=end

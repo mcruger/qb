@@ -4,6 +4,7 @@ Quizbowl::Application.routes.draw do
 
   resources :users
   resources :hosts
+  resources :games
 
 =begin
   ############## USER ROUTES ###############
