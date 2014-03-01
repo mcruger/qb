@@ -25,8 +25,8 @@ class CreateQuestions < ActiveRecord::Migration
   		t.string :state
       t.string :sex
   		t.integer :zip
-  		t.string :password
-  		t.text :pass_hint
+  		t.string :password_digest
+  		t.text :password_hint
   		t.timestamps
   	end
 

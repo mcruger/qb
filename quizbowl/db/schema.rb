@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.string   "state"
     t.string   "sex"
     t.integer  "zip"
-    t.string   "password"
-    t.text     "pass_hint"
+    t.string   "password_digest"
+    t.text     "password_hint"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

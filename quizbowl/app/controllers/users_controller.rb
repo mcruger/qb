@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     	u.state = params["state"]
     	u.zip = params["zip"]
     	u.password = params["password"]
+        u.password_confirmation = params["password_confirmation"]
     	u.age = params["age"]
     	u.ranking = params["ranking"]
     	u.high_score = params["high_score"]
