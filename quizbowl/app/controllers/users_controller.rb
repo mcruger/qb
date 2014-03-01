@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	#render the page allowing a user to sign up, check to make sure user is not logged in
 	def new
-		redirect_to users_url
+		
 	end
 
 	#create the user in database from the form
@@ -27,13 +27,16 @@ class UsersController < ApplicationController
     	u.ranking = params["ranking"]
     	u.high_score = params["high_score"]
     	u.save
-    	redirect_to users_url #make login go away and say welcome
+
+    	@user = User.find_by :username => u.username
+    	render 'show' #make login go away and say welcome
 	end
 
 
 	#show user their profile
 	def show
 		the_user_id = params["id"]
+		puts the_user_id
     	@user = User.find_by :id => the_user_id
 	end
 
@@ -48,7 +51,7 @@ class UsersController < ApplicationController
 	#rendered upon editing profile
 	def update
 		the_user_id = params["id"]
-    	u = Host.find_by(:id => the_user_id)
+    	u = User.find_by(:id => the_user_id)
     	u.username = params["username"]
     	u.first = params["first"]
     	u.last = params["last"]
@@ -71,7 +74,7 @@ class UsersController < ApplicationController
 		the_user_id = params["id"]
     	user = User.find_by(:id => the_user_id)
     	user.destroy
-    	redirect_to user_url
+    	redirect_to 'home#index'
 	end
 
 
