@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.datetime "updated_at"
   end
 
-  create_table "game", force: true do |t|
+  create_table "games", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,19 +46,13 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.datetime "updated_at"
   end
 
-  create_table "hosttypes", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "players", force: true do |t|
     t.integer "user_id"
     t.integer "game_id"
   end
 
   create_table "provides", force: true do |t|
-    t.integer "host_id"
+    t.integer "user_id"
     t.integer "game_id"
   end
 
@@ -67,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.datetime "updated_at"
   end
 
-  create_table "subject", force: true do |t|
+  create_table "subjects", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,8 +80,17 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.string   "state"
     t.string   "sex"
     t.integer  "zip"
+    t.string   "phone_num"
+    t.string   "add_l1"
+    t.string   "add_l2"
     t.string   "password_digest"
     t.text     "password_hint"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usertypes", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

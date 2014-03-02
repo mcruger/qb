@@ -29,6 +29,9 @@
 #   h.save
 # end
 
+####################
+#QUESTIONS
+####################
 
 questions = [
 			 {:question => "In which sport would you use a chucker?"},
@@ -55,6 +58,9 @@ questions.each do |ques|
 	q.save
  end
 
+####################
+#ANSWERS
+####################
 
 answers = [{:question_id => 1,        #question 1
 			:answer => "Badminton",
@@ -128,3 +134,58 @@ answers.each do |ans|
     a.is_correct = ans[:is_correct]
 	a.save
  end
+
+####################
+#GAMES
+####################
+
+games = [
+  {
+    :name => "FirstGame",
+    :user_id => 1,
+    :description => "Test game, come playy....................asdfasdf..........asdfasdf................asdfasdf..asdfasdf",
+    :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
+    :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
+  },
+  {
+    :name => "Duplicate of FirstGame",
+    :user_id => 1,
+    :description => "blah blah blah blah blah blah blah...................asdfasdf..........asdfasdf................asdfasdf..asdfasdf",
+    :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
+    :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
+  }]
+
+Game.destroy_all
+
+games.each do |game|
+    g = Game.new
+    g.name = game[:name]
+	g.description = game[:description]
+	g.user_id = game[:user_id]
+	g.created_at = game[:created_at]
+	g.updated_at = game[:updated_at]
+	g.save
+ end
+
+####################
+#PROVIDES (user provides a game)
+####################
+
+  providers = [
+  {
+    :user_id => 1,
+    :game_id => 1
+  },
+  {
+    :user_id => 2,
+    :game_id => 2
+  }]
+
+Provide.destroy_all
+
+providers.each do |prov|
+	p = Provide.new
+	p.user_id = prov[:user_id]
+	p.game_id = prov[:game_id]
+	p.save
+end
