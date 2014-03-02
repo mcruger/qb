@@ -26,7 +26,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :sex
   		t.integer :zip
       t.string :phone_num
-
+      t.string :add_l1
+      t.string :add_l2
   		t.string :password_digest
   		t.text :password_hint
   		t.timestamps
@@ -53,12 +54,12 @@ class CreateQuestions < ActiveRecord::Migration
   		t.timestamps
   	end	
 
-	create_table :subject do |t|
+	create_table :subjects do |t|
 		t.string :description
 		t.timestamps
 	end  	
 
-	create_table :game do |t|
+	create_table :games do |t|
 		t.string :name
 		t.string :description
 		t.timestamps
@@ -94,7 +95,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.text :password_hint
       t.timestamps
     end 
-
+    
     create_table :hosttypes do |t|
       t.string :name
       t.timestamps
