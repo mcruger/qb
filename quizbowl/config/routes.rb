@@ -5,8 +5,11 @@ Quizbowl::Application.routes.draw do
   resources :users
   resources :hosts
   resources :games
+  resources :sessions
 
   get "/lobbys" => "lobbys#view_games", as: 'show_lobbys'
+
+  get "/logout" => "sessions#destroy", as: 'logout'
 
 # get "/logout" => "sessions#destroy", as: 'logout'
 

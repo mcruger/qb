@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     	u.ranking = params["ranking"]
     	u.high_score = params["high_score"]
     	u.save
-
+        session[:user_id] = u.id
     	@user = User.find_by :username => u.username
     	redirect_to show_lobbys_url #make login go away and say welcome
 	end
