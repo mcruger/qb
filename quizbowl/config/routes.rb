@@ -6,6 +6,10 @@ Quizbowl::Application.routes.draw do
   resources :hosts
   resources :games
 
+  get "/lobbys" => "lobbys#view_games", as: 'show_lobbys'
+
+# get "/logout" => "sessions#destroy", as: 'logout'
+
 =begin
   ############## USER ROUTES ###############
   #CREATE
