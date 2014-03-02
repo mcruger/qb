@@ -25,6 +25,8 @@ class CreateQuestions < ActiveRecord::Migration
   		t.string :state
       t.string :sex
   		t.integer :zip
+      t.string :phone_num
+
   		t.string :password_digest
   		t.text :password_hint
   		t.timestamps
@@ -46,7 +48,7 @@ class CreateQuestions < ActiveRecord::Migration
   		t.timestamps
   	end	
 
-  	create_table :hosttypes do |t|
+  	create_table :usertypes do |t|
   		t.string :name
   		t.timestamps
   	end	
@@ -70,9 +72,34 @@ class CreateQuestions < ActiveRecord::Migration
 
 	#mapping table to map hosts to games
 	create_table :provides do |t|
-		t.belongs_to :host
+		t.belongs_to :user
 		t.belongs_to :game
 	end
+
+
+=begin
+    #removed and just use 1 user as host and player...
+    create_table :hosts do |t|
+      t.string :host_name
+      t.string :primary_contact_name
+      t.string :email
+      t.string :add_l1
+      t.string :add_l2
+      t.string :city
+      t.string :state
+      t.integer :zip
+      t.integer :game_count
+      t.string :phone_num
+      t.string :password
+      t.text :password_hint
+      t.timestamps
+    end 
+
+    create_table :hosttypes do |t|
+      t.string :name
+      t.timestamps
+    end 
+=end
 
   end
 end

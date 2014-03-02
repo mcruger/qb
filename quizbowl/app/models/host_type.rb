@@ -1,3 +1,3 @@
-class HostType < ActiveRecord::Base
-	belongs_to :host
+class UserType < ActiveRecord::Base
+	belongs_to :user
 end
