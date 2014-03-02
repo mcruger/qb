@@ -30,6 +30,42 @@
 # end
 
 ####################
+#USERS
+####################
+
+=begin
+users = [
+		{
+			:username => "carl", 
+			:email => "carl@example.com", 
+			:password => "password", 
+			:password_confirmation => "password"
+		},
+		{
+			:username => "rob", 
+			:email => "rob@example.com", 
+			:password => "password", 
+			:password_confirmation => "password"
+		}
+		]
+
+User.destroy_all
+users.each do |user|
+    u = User.new
+    u.username = user[:username]
+    u.email = user[:email]
+    u.password_digest = user[:password]
+    #u.password = user[:password_confirmation]
+	u.save
+ end
+
+=end
+
+#need to seed with User.create so has_secure_password methods are picked up
+user1 = User.create(username: "carl", email: "carl@example.com", password: "password", password_confirmation: "password")
+user2 = User.create(username: "rob", email: "rob@example.com", password: "password", password_confirmation: "password")
+
+####################
 #QUESTIONS
 ####################
 
