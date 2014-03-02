@@ -1,10 +1,10 @@
-<% if @games.size > 0 %>
+
+<% if @games.count != 0 %>
 <% @games.each do |game| %>
 <div class="row">
 
 
 	<%= link_to game.title, game_path(game.id) %>
-	<%= link_to movie.title, movie_path(movie.id) %>
 
 
 </div>

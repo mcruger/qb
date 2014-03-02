@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     	u.save
 
     	@user = User.find_by :username => u.username
-    	redirect_to show_lobby_url #make login go away and say welcome
+    	redirect_to show_lobbys_url #make login go away and say welcome
 	end
 
 
