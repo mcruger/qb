@@ -22,6 +22,7 @@ class GamesController < ApplicationController
 
 
 	def show
+		@questions = Question.includes(:answers).where("game_id = ?", 1)
 
 	end
 

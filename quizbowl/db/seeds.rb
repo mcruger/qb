@@ -91,6 +91,14 @@ Question.destroy_all
 questions.each do |ques|
     q = Question.new
     q.question = ques[:question]
+    q.game_id = 1
+	q.save
+ end
+
+questions.each do |ques|
+    q = Question.new
+    q.question = ques[:question]
+    q.game_id = 2
 	q.save
  end
 

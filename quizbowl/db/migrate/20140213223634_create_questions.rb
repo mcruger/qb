@@ -3,6 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
 
     create_table :questions do |t|
       t.text :question
+      t.belongs_to :game
       t.timestamps
     end
  

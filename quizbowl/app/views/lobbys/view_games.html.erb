@@ -1,19 +1,9 @@
-
-<% if @games.any? %>
 <% @games.each do |game| %>
 <div class="row">
 
 
-
-	<h3>	
-	<%= link_to game.name, game_path(game.id) %>
-	<%= game.description %>
-	</h3>
-
+	<%= game.name %>
+	
 
 </div>
-<% end %>
-<% else %>
-<p>Sorry, No Fn Games right now.</p>
-
 <% end %>
