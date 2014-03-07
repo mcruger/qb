@@ -32,14 +32,12 @@ $( document ).ready(function() {
 //need a global var to denote what question the interval is on. 
 q_index_GLOBAL = 0;
 q_index_max_GLOBAL = questionIDs.length;
-var myVar=setInterval(function(){myTimer(questionIDs)},5000);
+var intervalID=setInterval(function(){displayQuestion(questionIDs,intervalID)},5000);
 
 });
 
-
-
 //interval function that times each question
-function myTimer(questionIDs)
+function displayQuestion(questionIDs, intervalID)
 {
 	if(q_index_GLOBAL != q_index_max_GLOBAL){
 		//ever interval, hide current div, show next div
@@ -49,6 +47,7 @@ function myTimer(questionIDs)
 		q_index_GLOBAL++;
 	}else{
 		alert("END OF GAME");
+		clearInterval(intervalID);
 	}
 }
 
