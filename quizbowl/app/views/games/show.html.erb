@@ -1,9 +1,6 @@
 <script>
 //initializes game for play
 //hides everything and starts timer
-
-
-
 $( document ).ready(function() {
 
 	var questionIDs = new Array();
@@ -24,46 +21,60 @@ $( document ).ready(function() {
 //start timer - this is the game's total time to be played
 //each question will then run on a separate timer that will handle the "peeling off" of wrong answers
 
-//need a global var to denote what question the interval is on. 
+//need a few global vars to denote what question the interval is on 
 q_index_GLOBAL = 0;
 q_index_max_GLOBAL = questionIDs.length;
-var intervalVal = 3000;
-var intervalID=setInterval(function(){displayQuestion(questionIDs,intervalID, intervalVal)}, intervalVal);
+is_first_GLOBAL = true;
+var intervalVal = 10000;
+peelIntervalVal = 1000; //trying to set peel val, but not working correctly
+displayQuestion(questionIDs,intervalID, intervalVal, peelIntervalVal);
+var intervalID=setInterval(function(){displayQuestion(questionIDs,intervalID, intervalVal)}, intervalVal, peelIntervalVal);
 
 });
 
 
 //interval function that times each question
-function displayQuestion(questionIDs, intervalID, intervalVal)
+function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 {
 	//init blank array to store question IDs
 	//for *this question 
-	var answerIDs = new Array();
-	var numAnswers;
+	var wrong_answerIDs = new Array();
+	var numAnswers = 0;
 	if(q_index_GLOBAL != q_index_max_GLOBAL){
-		//ever interval, hide current div, show next div
-		$("#"+questionIDs[q_index_GLOBAL]).toggle();
-		$("#"+questionIDs[(q_index_GLOBAL+1)]).toggle();
 
+		//for every interval (other than first), hide current div, show next div
+		if(is_first_GLOBAL==false){
+			$("#"+questionIDs[(q_index_GLOBAL-1)]).toggle();
+			$("#"+questionIDs[(q_index_GLOBAL)]).toggle();
+		}
+		is_first_GLOBAL = false;
 		//get all answer values for this question
 		//note class syntax matches answer class - answer_q_id
 		$('.answer_'+questionIDs[q_index_GLOBAL]).each( function(i,e) {
 				cur_classID = "";
     			cur_classID = $(e).attr('id');
     			//only grab answers that are incorrect (we're peeling them off)
-    			if(cur_classID.indexOf("True") === false){
-	    			answerIDs.push(cur_classID);
+    			if(cur_classID.indexOf("false") !== -1){
+	    			wrong_answerIDs.push(cur_classID);
 	    		}
 		});
 
-		numAnswers = answerIDs.length;
+		//randomize array of wrong answers so there's no order to peeling off 
+		wrong_answerIDs.sort(function(){
+			return Math.round(Math.random()) - 0.5;
+		});
+		
+		numAnswers = wrong_answerIDs.length;
 
-		//peel off incorrect answers in set time increments
-		while(numAnswers != 0){
-			setTimeout(function(){alert(answerIDs[numAnswers])}, 1000);
-
-		}		
-
+		//loop w/ wait functionality to "peel" incorrect answers
+		(function peelAnswersLoop (i, wrong_answerIDs, peelIntervalVal) {          
+   			setTimeout(function () {   
+      		//alert(wrong_answerIDs[i-1]);         
+      		$('#'+wrong_answerIDs[i-1]).hide();	
+      		if (--i) peelAnswersLoop(i, wrong_answerIDs);      //  decrement i and call again if i > 0
+   			}, 2000) //peelIntervalVal should go here, something is f'd, it just peels all vals at once
+		})(wrong_answerIDs.length, wrong_answerIDs, peelIntervalVal);	
+		
 		q_index_GLOBAL++;
 	}else{
 		alert("END OF GAME");
@@ -71,6 +82,21 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 	}
 }
 
+
+
+/**
+*utility function to create animation effect on text being striked out - jquery doesn't seem to have anything built in
+**/
+function StrikeThrough(index, string, elemID) {
+    if (index >= string.length)
+        return false;
+    var sToStrike = string.substr(0, index + 1);
+    var sAfter = (index < (string.length - 1)) ? string.substr(index + 1, string.length - index) : "";
+    $("#"+elemID).html("<strike>" + sToStrike + "</strike>" + sAfter);
+    window.setTimeout(function() {
+        StrikeThrough(index + 1,string,elemID);
+    }, 100);
+}
 
 </script>
 
