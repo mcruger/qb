@@ -1,11 +1,74 @@
+<script>
+//initializes game for play
+//hides everything and starts timer
 
+
+
+$( document ).ready(function() {
+
+	var questionIDs = new Array();
+	var is_first = true;
+	var cur_classID;
+
+	$('.question').each( function(i,e) { 
+		cur_classID = "";
+    	cur_classID = $(e).attr('id');
+
+    	questionIDs.push(cur_classID);
+		if(is_first != true){
+			$("#"+cur_classID).toggle();
+		}
+		is_first = false;
+	});
+
+/*	for (var i=0; i<questionIDs.length; i++){
+		alert(questionIDs[i]);
+	}
+*/
+
+//start timer - this is the game's total time to be played
+//each question will then run on a separate timer that will handle the "peeling off" of wrong answers
+
+//need a global var to denote what question the interval is on. 
+q_index_GLOBAL = 0;
+q_index_max_GLOBAL = questionIDs.length;
+var myVar=setInterval(function(){myTimer(questionIDs)},5000);
+
+});
+
+
+
+//interval function that times each question
+function myTimer(questionIDs)
+{
+	if(q_index_GLOBAL != q_index_max_GLOBAL){
+		//ever interval, hide current div, show next div
+		alert("asdf");
+		$("#"+questionIDs[q_index_GLOBAL]).toggle();
+		$("#"+questionIDs[(q_index_GLOBAL+1)]).toggle();
+		q_index_GLOBAL++;
+	}else{
+		alert("END OF GAME");
+	}
+}
+
+
+</script>
 
 <% @questions.each do |q| %>
-
-
-<%= q.question %>
-
-
-
+	
+	<div class="question" id='<%=q.id%>'>
+	<h1><%= q.question %></h1>
+	<!--need to get all answers for this question (by quesiton_id)-->
+	<br>
+	 <% q.answers.each do |a| %>
+	 
+	 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s() %>
+	   <%= a.answer %>
+       <br>
+    <% end %>
+	</div>
+	<br>
+	<br>
 <% end %>
 
