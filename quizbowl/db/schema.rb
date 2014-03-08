@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.string   "name"
     t.string   "description"
     t.integer  "user_id"
+    t.boolean  "started"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +62,14 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "results", force: true do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.integer "score"
+    t.integer "place"
+    t.integer "total_players"
   end
 
   create_table "subjects", force: true do |t|

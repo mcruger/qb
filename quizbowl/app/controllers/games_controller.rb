@@ -22,10 +22,22 @@ class GamesController < ApplicationController
 
 
 	def show
-		@questions = Question.includes(:answers).where("game_id = ?", 1)
+		the_game_id = params["id"]
+    	@game = Game.find_by :id => the_game_id
+
+  #   	if @game.started == 1
+			# @questions = Question.includes(:answers).where("game_id = ?", 1)
+		# else 
+			render waiting_area_url
+		# end
 
 	end
 
+	def waiting
+		the_game_id = params["id"]
+    	@game = Game.find_by(:id => the_game_id)	
+    	puts @game.id
+	end
 
 
 	def edit

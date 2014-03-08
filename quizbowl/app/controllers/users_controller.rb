@@ -52,20 +52,15 @@ class UsersController < ApplicationController
 	def update
 		the_user_id = params["id"]
     	user = User.find_by(:id => the_user_id)
-    	user.username = params["username"]
     	user.first = params["first"]
     	user.last = params["last"]
-    	user.sex = params["sex"]
     	user.email = params["email"]
     	user.city = params["city"]
     	user.state = params["state"]
     	user.zip = params["zip"]
-    	user.password = params["password"]
     	user.age = params["age"]
-    	user.ranking = params["ranking"]
-    	user.high_score = params["high_score"]
     	user.save
-    	redirect_to users_url
+    	redirect_to show_lobbys_url
 	end
 
 
@@ -74,7 +69,7 @@ class UsersController < ApplicationController
 		the_user_id = params["id"]
     	user = User.find_by(:id => the_user_id)
     	user.destroy
-    	redirect_to 'home#index'
+    	redirect_to root_url
 	end
 
 

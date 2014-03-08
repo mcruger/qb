@@ -64,6 +64,7 @@ class CreateQuestions < ActiveRecord::Migration
 		t.string :name
 		t.string :description
     t.belongs_to :user
+    t.boolean :started
 		t.timestamps
 	end	
 
@@ -79,6 +80,14 @@ class CreateQuestions < ActiveRecord::Migration
 		t.belongs_to :game
 	end
 
+  #results
+  create_table :results do |t|
+    t.belongs_to :user
+    t.belongs_to :game
+    t.integer :score
+    t.integer :place
+    t.integer :total_players
+  end
 
 =begin
     #removed and just use 1 user as host and player...
