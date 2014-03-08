@@ -4,5 +4,6 @@ class LobbysController < ApplicationController
 		@games = Game.all.order("name asc")
 	end
 
+	
 
 end

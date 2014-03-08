@@ -45,7 +45,12 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
+      <% if session[:user_id].blank? %>
       
+      <% else %>
+      <li><%= link_to 'Log Out', logout_url %></li>
+      
+      <% end %>
       <li class="has-dropdown">
         <a href="#">About Us</a>
         <ul class="dropdown">
@@ -63,7 +68,8 @@
       <li><%= link_to 'Sign Up', new_user_path %></li>
       <li><%= link_to 'Log In', new_session_url %></li>
       <% else %>
-      <li><%= link_to 'Log Out', logout_url %></li>
+      <li><%= link_to 'My Profile', edit_user_url(session[:user_id]) %></li>
+      <li><%= link_to 'Games Lobby', show_lobbys_url%></li>
       <% end %>
     </ul>
   </section>
