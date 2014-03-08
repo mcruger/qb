@@ -182,7 +182,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 6,       
 			:answer => "That's a Dime!",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 7,       #question 7
 			:answer => "7",
 			:is_correct => 0},
@@ -194,7 +194,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 7,       
 			:answer => "6",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 8,       #question 8
 			:answer => "Buzz Aldrin",
 			:is_correct => 0},
@@ -206,7 +206,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 8,       
 			:answer => "Buzz Lightyear",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 9,       #question 9
 			:answer => "Call his flock of sheep.",
 			:is_correct => 0},
@@ -218,7 +218,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 9,       
 			:answer => "Start a war.",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 10,       #question 10
 			:answer => "A medical doctor.",
 			:is_correct => 0},
@@ -243,7 +243,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 11,       
 			:answer => "Carver",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 12,       #question 12
 			:answer => "8",
 			:is_correct => 0},
@@ -255,7 +255,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 12,       
 			:answer => "32",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 13,       #question 13
 			:answer => "Water can be chemically synthesized by burning rocket fuel.",
 			:is_correct => 0},
@@ -267,7 +267,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 13,       
 			:answer => "100% of all people exposed to water will die.",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 14,       #question 14
 			:answer => "She drops the keys.",
 			:is_correct => 0},
@@ -279,7 +279,7 @@ answers = [{:question_id => 1,        #question 1
 			:is_correct => 1},
 			{:question_id => 14,       
 			:answer => "Someone is hiding in the back seat.",
-			:is_correct => 0}
+			:is_correct => 0},
 			{:question_id => 15,       #question 15
 			:answer => "500 Million",
 			:is_correct => 0},
