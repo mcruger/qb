@@ -185,16 +185,16 @@ answers.each do |ans|
 
 games = [
   {
-    :name => "FirstGame",
+    :name => "Bob's Bar & Grill",
     :user_id => 1,
-    :description => "Test game, come playy....................asdfasdf..........asdfasdf................asdfasdf..asdfasdf",
+    :description => "Wings, women and good times!",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
   },
   {
-    :name => "Duplicate of FirstGame",
+    :name => "Oceanside Diner",
     :user_id => 1,
-    :description => "blah blah blah blah blah blah blah...................asdfasdf..........asdfasdf................asdfasdf..asdfasdf",
+    :description => "Home of the wavy fries.",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
   }]

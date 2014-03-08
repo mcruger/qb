@@ -13,23 +13,23 @@ class UsersController < ApplicationController
 
 	#create the user in database from the form
 	def create
-		u = User.new
-		u.username = params["username"]
-    	u.first = params["first"]
-    	u.last = params["last"]
-    	u.sex = params["sex"]
-    	u.email = params["email"]
-    	u.city = params["city"]
-    	u.state = params["state"]
-    	u.zip = params["zip"]
-    	u.password = params["password"]
-        u.password_confirmation = params["password_confirmation"]
-    	u.age = params["age"]
-    	u.ranking = params["ranking"]
-    	u.high_score = params["high_score"]
-    	u.save
-        session[:user_id] = u.id
-    	@user = User.find_by :username => u.username
+		user = User.new
+		user.username = params["username"]
+    	user.first = params["first"]
+    	user.last = params["last"]
+    	user.sex = params["sex"]
+    	user.email = params["email"]
+    	user.city = params["city"]
+    	user.state = params["state"]
+    	user.zip = params["zip"]
+    	user.password = params["password"]
+        user.password_confirmation = params["password_confirmation"]
+    	user.age = params["age"]
+    	user.ranking = params["ranking"]
+    	user.high_score = params["high_score"]
+    	user.save
+        session[:user_id] = user.id
+    	@user = User.find_by :username => user.username
     	redirect_to show_lobbys_url #make login go away and say welcome
 	end
 
@@ -37,7 +37,6 @@ class UsersController < ApplicationController
 	#show user their profile
 	def show
 		the_user_id = params["id"]
-		puts the_user_id
     	@user = User.find_by :id => the_user_id
 	end
 
@@ -52,20 +51,20 @@ class UsersController < ApplicationController
 	#rendered upon editing profile
 	def update
 		the_user_id = params["id"]
-    	u = User.find_by(:id => the_user_id)
-    	u.username = params["username"]
-    	u.first = params["first"]
-    	u.last = params["last"]
-    	u.sex = params["sex"]
-    	u.email = params["email"]
-    	u.city = params["city"]
-    	u.state = params["state"]
-    	u.zip = params["zip"]
-    	u.password = params["password"]
-    	u.age = params["age"]
-    	u.ranking = params["ranking"]
-    	u.high_score = params["high_score"]
-    	u.save
+    	user = User.find_by(:id => the_user_id)
+    	user.username = params["username"]
+    	user.first = params["first"]
+    	user.last = params["last"]
+    	user.sex = params["sex"]
+    	user.email = params["email"]
+    	user.city = params["city"]
+    	user.state = params["state"]
+    	user.zip = params["zip"]
+    	user.password = params["password"]
+    	user.age = params["age"]
+    	user.ranking = params["ranking"]
+    	user.high_score = params["high_score"]
+    	user.save
     	redirect_to users_url
 	end
 

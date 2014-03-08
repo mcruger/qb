@@ -1,58 +1,35 @@
 <div class="row">
 <div class="large-6 columns">
   <%= image_tag "QuizBowlLogo.png" %>
+  <br>
+  <h4 class = "text-center">Sign Up! Everybody's doing it!</h4>
 </div>
 
 <div class="large-6 columns">
 
-<div class="page-header">
-  <h4>Sign Up! Everybody's doing it!</h4>
-</div>
 
 <%= form_tag users_url, :method => 'post' do %>
-      <div class="form-group">
-        <label for="first">Username:</label>
-        <input type="string" name="username" class="form-control" id="username" placeholder="Username">
-      </div>
-      <div class="form-group">
-        <label for="first">First Name:</label>
-        <input type="string" name="first" class="form-control" id="first" placeholder="John">
-      </div>
-      <div class="form-group">
-        <label for="last">Last Name:</label>
-        <input type="string" name="last" class="form-control" id="last" placeholder="Doe">
-      </div>
-      <div class="form-group">
-        <label for="email">Sex:</label>
-        <input type="string" name="sex" class="form-control" id="sex" placeholder="male or female">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="string" name="email" class="form-control" id="email" placeholder="john.doe@example.com">
-      </div>
-            <div class="form-group">
-        <label for="age">Age:</label>
-        <input type="int" name="age" class="form-control" id="age" placeholder="age">
-      </div>
-      <div class="form-group">
-        <label for="city">City:</label>
-        <input type="string" name="city" class="form-control" id="city" placeholder="Chicago">
-      </div>
-      <div class="form-group">
-        <label for="state">State:</label>
-        <input type="string" name="state" class="form-control" id="state" placeholder="IL">
-      </div>
-      <div class="form-group">
-        <label for="zip">Zip Code:</label>
-        <input type="int" name="zip" class="form-control" id="zip" placeholder="60615">
-      </div>
+      <%= label_tag :username %>
+      <%= text_field_tag :username, "", placeholder: "Username" %>
+      <%= label_tag :first %>
+      <%= text_field_tag :first, "", placeholder: "First Name" %>
+      <%= label_tag :last %>
+      <%= text_field_tag :last, "", placeholder: "Last Name" %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, "", placeholder: "Email" %>
+      <%= label_tag :age %>
+      <%= text_field_tag :age, "", placeholder: "Age" %>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, "", placeholder: "City" %>
+      <%= label_tag :state %>
+      <%= text_field_tag :state, "", placeholder: "State" %>
+      <%= label_tag :zip %>
+      <%= text_field_tag :zip, "", placeholder: "Zip" %>
+      <%= label_tag :password %>
+      <%= text_field_tag :password, "", placeholder: "Password" %>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="string" name="password" class="form-control" id="password" placeholder="password">
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="password">
+        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
       </div>
       <br>
       <button type="submit" class="button [tiny small large]">Submit</button>
@@ -60,3 +37,6 @@
 <% end%>
 </div>
 </div>
+</div>
+
+

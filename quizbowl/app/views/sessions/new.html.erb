@@ -1,12 +1,21 @@
-<h1>Sign In Here</h1>
+
 
 <%= form_tag "/sessions" do %>
+<div class="small-6 small-centered columns">
+	<h1>Sign In Here</h1>
+	<p>Please enter your Email <bold> OR </bold> Username and Password:</p>
   <%= label_tag :email %>
-  <%= text_field_tag :email, "", placeholder: "Enter your email address" %>
+  <%= text_field_tag :email, "", placeholder: "Enter your Email Address" %>
   <br>
+  <p> OR </p>
+  <%= label_tag :username %>
+  <%= text_field_tag :username, "", placeholder: "Enter your Username" %>
+  <br>
+  <p> AND </p>
   <%= label_tag :password %>
-  <%= password_field_tag :password  %>
+  <%= password_field_tag :password, "", placeholder: "Your Password...NO Cheating The System"  %>
   <br>
 
-  <%= submit_tag "Login" %>
+<%= button_tag("Log Me In!", type: "submit", class: "button [radius round]") %>
+</div>
 <% end %>

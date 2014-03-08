@@ -14,14 +14,30 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+  }
+  .fix_button_group{
+  display: inline-block;
+  }
+
+  .myinline { display: inline; }
+  /* Testing */
+  /*#sidebar-newsletter{ background:#2e3639; color:#fff; padding:20px; font-size:14px;  margin-bottom:20px;}
+  #sidebar-newsletter .sidebar-title {  margin-bottom:10px; color:#fff; }
+  .sidebar-title { color:#000; font-size:19px; position:relative; }
+  .sb-tw-art .sidebar-title,
+  .sb-popular-art .sidebar-title,
+  .sb-poll-art .sidebar-title { left:20px; top:11px;}
+  .sb-tw-art .sidebar-title:hover { border-color:rgba(255,255,255, 1);  text-decoration:none;}
+  .sidebar-nl-text { font-size:13px; line-height:19px;}
+#sb-subscribe-form { margin-top:10px; text-align:left;}*/
+
   </style>
 </head>
 <body>
 	<nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">Quiz Bowl</a></h1>
+      <h1><%= link_to 'Quiz Bowl', root_url %></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
@@ -29,11 +45,7 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <% if session[:user_id].blank? %>
-      <li><%= link_to 'Login', new_session_url %></li>
-      <% else %>
-      <li><%= link_to 'My Profile', @username %></li>
-      <% end %>
+      
       <li class="has-dropdown">
         <a href="#">About Us</a>
         <ul class="dropdown">
@@ -47,8 +59,9 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <% if session[:user_id].blank? %>
-      <li><%= link_to 'Host Sign Up', new_host_path %></li>
-      <li><%= link_to 'User Sign Up', new_user_path %></li>
+      
+      <li><%= link_to 'Sign Up', new_user_path %></li>
+      <li><%= link_to 'Log In', new_session_url %></li>
       <% else %>
       <li><%= link_to 'Log Out', logout_url %></li>
       <% end %>
