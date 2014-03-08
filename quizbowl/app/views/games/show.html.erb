@@ -26,10 +26,12 @@ $( document ).ready(function() {
 q_index_GLOBAL = 0;
 q_index_max_GLOBAL = questionIDs.length;
 is_first_GLOBAL = true;
-var intervalVal = 10000;
+var intervalVal = 22000; //add 2 seconds for delay
 peelIntervalVal = 1000; //trying to set peel val, but not working correctly
 displayQuestion(questionIDs,intervalID, intervalVal, peelIntervalVal);
-var intervalID=setInterval(function(){displayQuestion(questionIDs,intervalID, intervalVal)}, intervalVal, peelIntervalVal);
+var intervalID=setInterval(function(){
+	var q_start = new Date();
+	displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal, q_start)}, intervalVal);
 
 });
 
@@ -45,14 +47,15 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 
 	//$('#timer_'+questionIDs[(q_index_GLOBAL)]).html();
 
-
-	(function timerLoop (i, questionIDs) {          
-   			setTimeout(function () {   
+		//display timer
+		(function timerLoop (i, questionIDs) {          
+   			var test1 = setTimeout(function () {   
       		//alert('hello');          
-      		$('#timer_'+questionIDs[(q_index_GLOBAL)]).html("display timer here, broken :" + i);                
-      		if (--i) myLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
+      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html("display timer here, broken :" + i);  
+      		clearTimeout(test1);              
+      		if (--i) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
    		}, 1000)
-		})(5, questionIDs);
+		})(((intervalVal-2000)/1000), questionIDs);
 		
 	if(q_index_GLOBAL != q_index_max_GLOBAL){
 
@@ -62,6 +65,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 			$("#"+questionIDs[(q_index_GLOBAL)]).toggle();
 		}
 		is_first_GLOBAL = false;
+
 
 		
 		//get all answer values for this question
@@ -84,11 +88,12 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 
 		//loop w/ wait functionality to "peel" incorrect answers
 		(function peelAnswersLoop (i, wrong_answerIDs, peelIntervalVal) {          
-   			setTimeout(function () {   
+   			var test = setTimeout(function () {   
       		//alert(wrong_answerIDs[i-1]);         
-      		$('#'+wrong_answerIDs[i-1]).hide();	
+      		$('#'+wrong_answerIDs[i-1]).hide();
+      		clearTimeout(test);	
       		if (--i) peelAnswersLoop(i, wrong_answerIDs);      //  decrement i and call again if i > 0
-   			}, 2000) //peelIntervalVal should go here, something is f'd, it just peels all vals at once
+   			}, (intervalVal/3)) //peelIntervalVal should go here, something is f'd, it just peels all vals at once
 		})(wrong_answerIDs.length, wrong_answerIDs, peelIntervalVal);	
 		
 		q_index_GLOBAL++;
@@ -98,21 +103,6 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 	}
 }
 
-
-
-/**
-*utility function to create animation effect on text being striked out - jquery doesn't seem to have anything built in
-**/
-function StrikeThrough(index, string, elemID) {
-    if (index >= string.length)
-        return false;
-    var sToStrike = string.substr(0, index + 1);
-    var sAfter = (index < (string.length - 1)) ? string.substr(index + 1, string.length - index) : "";
-    $("#"+elemID).html("<strike>" + sToStrike + "</strike>" + sAfter);
-    window.setTimeout(function() {
-        StrikeThrough(index + 1,string,elemID);
-    }, 100);
-}
 
 </script>
 
