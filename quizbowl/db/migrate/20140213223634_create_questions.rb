@@ -27,6 +27,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :sex
   		t.integer :zip
       t.string :phone_num
+      t.string :display_name
+      t.string :display_description
       t.string :add_l1
       t.string :add_l2
   		t.string :password_digest
