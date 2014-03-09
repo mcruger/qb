@@ -4,6 +4,7 @@
 //hides everything and starts timer
 $( document ).ready(function() {
 
+
 	var questionIDs = new Array();
 	var is_first = true;
 	var cur_classID;
@@ -19,45 +20,65 @@ $( document ).ready(function() {
 		is_first = false;
 	});
 	
-//start timer - this is the game's total time to be played
-//each question will then run on a separate timer that will handle the "peeling off" of wrong answers
+	
 
-//need a few global vars to denote what question the interval is on 
-q_index_GLOBAL = 0;
-q_index_max_GLOBAL = questionIDs.length;
-is_first_GLOBAL = true;
-var intervalVal = 22000; //add 2 seconds for delay
-peelIntervalVal = 1000; //trying to set peel val, but not working correctly
-displayQuestion(questionIDs,intervalID, intervalVal, peelIntervalVal);
-var intervalID=setInterval(function(){
+
+	//start timer - this is the game's total time to be played
+	//each question will then run on a separate timer that will handle the "peeling off" of wrong answers
+
+	//need a few global vars to denote what question the interval is on 
+	q_index_GLOBAL = 0;
+	q_index_max_GLOBAL = questionIDs.length;
+	is_first_GLOBAL = true;
+	var intervalVal = 22000; //add 2 seconds for delay
+
+		//note, hardcoded intervalVal, wasn't coming through for some reason...
+		$('.answer').click(function(intervalVal){
+
+			var id = $(this).attr('id');
+			if (id.indexOf("true") !== -1){
+				cur_score = $('#score').val(); 
+				alert(cur_score);
+				s = $('#time').val();
+				var date = new Date();
+				var ntime = date.getTime();
+				var points = 22000 - (ntime - s);
+				alert("correct, score + " + points);
+				$('#score').val( (cur_score*1+points*1) );
+			}else{
+				alert("wrong");
+			}
+
+		});
+
+
+	displayQuestion(questionIDs,intervalID, intervalVal);
+	var intervalID=setInterval(function(){
 	var q_start = new Date();
-	displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal, q_start)}, intervalVal);
+	displayQuestion(questionIDs, intervalID, intervalVal, q_start)}, intervalVal);
 
 });
 
 
 //interval function that times each question
-function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
+function displayQuestion(questionIDs, intervalID, intervalVal)
 {
 	//init blank array to store question IDs
 	//for *this question 
 	var wrong_answerIDs = new Array();
 	var numAnswers = 0;
-	//alert('timer_'+questionIDs[(q_index_GLOBAL-1)]);
-
-	//$('#timer_'+questionIDs[(q_index_GLOBAL)]).html();
 
 		//display timer
 		(function timerLoop (i, questionIDs) {          
    			var test1 = setTimeout(function () {   
       		//alert('hello');          
-      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html("timer:" + i);  
+      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html(":" + i);  
       		clearTimeout(test1);              
       		if (--i) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
    		}, 1000)
 		})(((intervalVal-2000)/1000), questionIDs);
 		
-	if(q_index_GLOBAL != q_index_max_GLOBAL){
+		if(q_index_GLOBAL != q_index_max_GLOBAL){
 
 		//for every interval (other than first), hide current div, show next div
 		if(is_first_GLOBAL==false){
@@ -66,7 +87,10 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 		}
 		is_first_GLOBAL = false;
 
-
+		//put time in hidden field 'time' to keep track of time passed since question start
+		var d = new Date();
+		var n = d.getTime();
+		$('#time').val(n);
 		
 		//get all answer values for this question
 		//note class syntax matches answer class - answer_q_id
@@ -87,14 +111,14 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 		numAnswers = wrong_answerIDs.length;
 
 		//loop w/ wait functionality to "peel" incorrect answers
-		(function peelAnswersLoop (i, wrong_answerIDs, peelIntervalVal) {          
+		(function peelAnswersLoop (i, wrong_answerIDs) {          
    			var test = setTimeout(function () {   
       		//alert(wrong_answerIDs[i-1]);         
       		$('#'+wrong_answerIDs[i-1]).hide();
       		clearTimeout(test);	
-      		if (--i) peelAnswersLoop(i, wrong_answerIDs);      //  decrement i and call again if i > 0
-   			}, (intervalVal/3)) //peelIntervalVal should go here, something is f'd, it just peels all vals at once
-		})(wrong_answerIDs.length, wrong_answerIDs, peelIntervalVal);	
+      		if (--i >= 0) peelAnswersLoop(i, wrong_answerIDs);      //  decrement i and call again if i > 0
+   			}, (intervalVal/4)) 
+		})(wrong_answerIDs.length, wrong_answerIDs);	
 		
 		q_index_GLOBAL++;
 	}else{
@@ -103,19 +127,33 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 	}
 }
 
+function check_answer(){
+
+
+
+}
 
 </script>
 
+<!-- hidden field to hold time stamp of when question started -->
+<%= hidden_field_tag 'time', 0 %>
+
+<div class="score_pane" id='score_pane'>Score:
+<%= text_field_tag 'score', 0 %>
+</div>
+
+<% q_counter = 1 %>
 <% @questions.each do |q| %>
-	
+
 	<div class="question" id='q_<%=q.id%>'>
-		<span class="timer" id='timer_q_<%=q.id%>'></span>
+	<div class="question_num"><%= q_counter %></div>
+	<span class="timer" id='timer_q_<%=q.id%>'></span>
 	<h1><%= q.question %></h1>
 	<!--need to get all answers for this question (by quesiton_id)-->
 	<br>
 	 <% q.answers.each do |a| %>
 	 
-	 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s() %>
+	 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
 	 	<!-- note that answer_q_id is used for class
 	 	so we can easily grab all answers -->
 	   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>'><%= a.answer %></span>
@@ -125,5 +163,6 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 	</div>
 	<br>
 	<br>
+	<% q_counter += 1 %>
 <% end %>
 
