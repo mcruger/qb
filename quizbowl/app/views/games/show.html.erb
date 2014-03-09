@@ -51,7 +51,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal, peelIntervalVal)
 		(function timerLoop (i, questionIDs) {          
    			var test1 = setTimeout(function () {   
       		//alert('hello');          
-      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html("display timer here, broken :" + i);  
+      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html("timer:" + i);  
       		clearTimeout(test1);              
       		if (--i) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
    		}, 1000)
