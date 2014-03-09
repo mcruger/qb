@@ -26,11 +26,11 @@ class GamesController < ApplicationController
     	#@game = Game.find_by :id => the_game_id
 
   #   	if @game.started == 1
-			@questions = Question.includes(:answers).where("game_id = ?", 1)
+		@questions = Question.includes(:answers).where("game_id = ?", 1)
 		# else 
 			#render waiting_area_url
 		# end
-
+		#render 'show2' 
 	end
 
 	def waiting
