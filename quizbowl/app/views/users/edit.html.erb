@@ -21,6 +21,10 @@
         <%= label_tag :email %>
         <%= text_field_tag :email, @user.email, class: 'form-control', placeholder: 'Enter Email Here' %>
       </div>
+      <div class="form-group">
+        <%= label_tag :add1 %>
+        <%= text_field_tag :ad_l1, @user.city, class: 'form-control', placeholder: 'Enter St Address Here' %>
+      </div>
 
       <div class="form-group">
         <%= label_tag :city %>

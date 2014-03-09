@@ -1,69 +1,66 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-# headlines = [ { :title => "Part of the Affordable Care Act delayed again",
-#                  :url => "http://www.usatoday.com/story/news/nation/2014/02/10/aca-no-longer-applies-to-50-employees-and-under-in-2015/5370055/"
-#                 },
-#                 { :title => "Video shows capture of alleged al-Qaeda leader",
-#                   :url => "http://www.usatoday.com/story/news/world/2014/02/11/video-al-libi-capture/5385257/"
-#                 },
-#                 { :title => "Teens are stressed, and not handling it well",
-#                   :url => "http://www.usatoday.com/story/news/nation/2014/02/11/stress-teens-psychological/5266739/"
-#                 },
-#                 { :title => "Dumb Starbucks doesn't amuse health dept.",
-#                   :url => "http://www.usatoday.com/story/money/business/2014/02/10/dumb-starbucks-not-so-dumb/5374659/"
-#                 }
-#             ]
-
-# Headline.destroy_all
-
-# headlines.each do |headline_info|
-#   h = Headline.new
-#   h.title = headline_info[:title]
-#   h.url = headline_info[:url]
-#   h.save
-# end
-
-####################
-#USERS
-####################
-
-=begin
-users = [
-		{
-			:username => "carl", 
-			:email => "carl@example.com", 
-			:password => "password", 
-			:password_confirmation => "password"
-		},
-		{
-			:username => "rob", 
-			:email => "rob@example.com", 
-			:password => "password", 
-			:password_confirmation => "password"
-		}
-		]
-
-User.destroy_all
-users.each do |user|
-    u = User.new
-    u.username = user[:username]
-    u.email = user[:email]
-    u.password_digest = user[:password]
-    #u.password = user[:password_confirmation]
-	u.save
- end
-
-=end
 
 #need to seed with User.create so has_secure_password methods are picked up
-user1 = User.create(username: "carl", email: "carl@example.com", password: "password", password_confirmation: "password")
-user2 = User.create(username: "rob", email: "rob@example.com", password: "password", password_confirmation: "password")
+user1 = User.create(username: "carl", 
+					email: "carl@example.com",
+					first: "Carl",
+					last: "Rodriguez",
+					age: "27",
+					high_score: "7892",
+					add_l1: "161 W. Kinzie",
+					city: "Chicago",
+					state: "IL",
+					zip: "60654",
+					sex: "Male",
+					password: "password", 
+					password_confirmation: "password")
+user2 = User.create(username: "rob", 
+					email: "rob@example.com",
+					first: "Rob",
+					last: "Rodriguez",
+					age: "27",
+					high_score: "7792",
+					add_l1: "161 W. Kinzie",
+					city: "Chicago",
+					state: "IL",
+					zip: "60654",
+					sex: "Male",
+					password: "password", 
+					password_confirmation: "password")
+user3 = User.create(username: "FabulousBobsWomen", 
+					email: "bobsgirls@bobspalaceofwings.com",
+					first: "Carla",
+					last: "Sanchez",
+					age: "24",
+					high_score: "11242",
+					add_l1: "12054 South Doty Road",
+					city: "Chicago",
+					state: "IL",
+					zip: "60628",
+					sex: "Female",
+					phone_num: "312-HOT-WING",
+					display_name: "Bob's Bar & Grill",
+					display_description: "Wings, women and good times!",
+					password: "password", 
+					password_confirmation: "password")
+user4 = User.create(username: "AnnaForHire", 
+					email: "anna@example.com", 
+					first: "Anna",
+					last: "Studebaker",
+					age: "35",
+					high_score: "13221",
+					add_l1: "4003 W. Lake St.",
+					city: "Stone Park",
+					state: "IL",
+					zip: "60165",
+					sex: "Female",
+					phone_num: "708.343.2000",
+					display_name: "Anna's Firehouse Burgers",
+					display_description: "Best burgers in the city!",
+					password: "password", 
+					password_confirmation: "password")
 
 ####################
 #QUESTIONS
@@ -311,15 +308,15 @@ answers.each do |ans|
 
 games = [
   {
-    :name => "Bob's Bar & Grill",
-    :user_id => 1,
+    :name => "Bob's 500 Wing Special Today Only",
+    :user_id => 3,
     :description => "Wings, women and good times!",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
   },
   {
-    :name => "Oceanside Diner",
-    :user_id => 1,
+    :name => "Anna's Burger Challenge Is ON!",
+    :user_id => 4,
     :description => "Home of the wavy fries.",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
@@ -359,3 +356,28 @@ providers.each do |prov|
 	p.game_id = prov[:game_id]
 	p.save
 end
+
+
+####################
+#PLAYERS
+####################
+
+	players = [
+  {
+    :user_id => 1,
+    :game_id => 1
+  },
+  {
+    :user_id => 2,
+    :game_id => 1
+  }]
+
+Player.destroy_all
+
+players.each do |play|
+	p = Player.new
+	p.user_id = play[:user_id]
+	p.game_id = play[:game_id]
+	p.save
+end
+
