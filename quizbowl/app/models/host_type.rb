@@ -1,3 +1,3 @@
-class UserType < ActiveRecord::Base
+lass UserType < ActiveRecord::Base
 	belongs_to :user
 end

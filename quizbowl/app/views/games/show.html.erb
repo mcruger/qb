@@ -20,9 +20,6 @@ $( document ).ready(function() {
 		is_first = false;
 	});
 	
-	
-
-
 	//start timer - this is the game's total time to be played
 	//each question will then run on a separate timer that will handle the "peeling off" of wrong answers
 
@@ -68,11 +65,13 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 	var wrong_answerIDs = new Array();
 	var numAnswers = 0;
 
+		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html("timer");
+		
 		//display timer
 		(function timerLoop (i, questionIDs) {          
    			var test1 = setTimeout(function () {   
       		//alert('hello');          
-      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html(":" + i);  
+      		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html(i);  
       		clearTimeout(test1);              
       		if (--i) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
    		}, 1000)
@@ -82,8 +81,13 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 
 		//for every interval (other than first), hide current div, show next div
 		if(is_first_GLOBAL==false){
+			
+
+
 			$("#"+questionIDs[(q_index_GLOBAL-1)]).toggle();
-			$("#"+questionIDs[(q_index_GLOBAL)]).toggle();
+			$("#"+questionIDs[(q_index_GLOBAL)]).insertBefore("#"+questionIDs[(q_index_GLOBAL-1)]);
+			$("#"+questionIDs[(q_index_GLOBAL)]).toggle("slow");
+		
 		}
 		is_first_GLOBAL = false;
 
@@ -134,35 +138,38 @@ function check_answer(){
 }
 
 </script>
+<div class="row">
+		<div class="large-12 columns">
+		<!-- hidden field to hold time stamp of when question started -->
+		<%= hidden_field_tag 'time', 0 %>
 
-<!-- hidden field to hold time stamp of when question started -->
-<%= hidden_field_tag 'time', 0 %>
+		<div class="score_pane" id='score_pane'>Score:
+		<%= text_field_tag 'score', 0 %>
+		</div>
 
-<div class="score_pane" id='score_pane'>Score:
-<%= text_field_tag 'score', 0 %>
-</div>
+		<% q_counter = 1 %>
+		<% @questions.each do |q| %>
 
-<% q_counter = 1 %>
-<% @questions.each do |q| %>
+			<div class="question" id='q_<%=q.id%>'>
+				<span class="timer" id='timer_q_<%=q.id%>' style='font:bold, size:20'></span>
 
-	<div class="question" id='q_<%=q.id%>'>
-	<div class="question_num"><%= q_counter %></div>
-	<span class="timer" id='timer_q_<%=q.id%>'></span>
-	<h1><%= q.question %></h1>
-	<!--need to get all answers for this question (by quesiton_id)-->
-	<br>
-	 <% q.answers.each do |a| %>
-	 
-	 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
-	 	<!-- note that answer_q_id is used for class
-	 	so we can easily grab all answers -->
-	   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>'><%= a.answer %></span>
+				<div class="question_num"> Question Number: <%= q_counter %></div>
+				<h1><%= q.question %></h1>
+				<!--need to get all answers for this question (by quesiton_id)-->
+				<br>
+				 <% q.answers.each do |a| %>
+				 
+				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
+				 	<!-- note that answer_q_id is used for class
+				 	so we can easily grab all answers -->
+				   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>'><%= a.answer %></span>
 
-       <br>
-    <% end %>
+			       <br>
+			    <% end %>
+			</div>
+			<br>
+			<br>
+			<% q_counter += 1 %>
+		<% end %>
 	</div>
-	<br>
-	<br>
-	<% q_counter += 1 %>
-<% end %>
-
+</div>

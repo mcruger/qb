@@ -21,86 +21,24 @@
   	<div style="overflow: auto;">
 		<table style="width: 800px" cellpadding="0" cellspacing="0">
 			<tr>
-  			<td><b>Host</b></td>
-  			<td style="text-indent: 215px"><b>Description</b></td>
-  			<td><b>Location</b></td>
+	  			<td><b>Host</b></td>
+	  			<td><b>Game Name</b></td>
+	  			<td><b>Description</b></td>
+	  			<td><b>Location</b></td>
 			</tr>
-		</table>
-	</div>
-<div style="overflow: auto;height: 400px; width: 820px;">
-  <table style="width: 800px;" cellpadding="0" cellspacing="0">
-  <% @games.each do |game| %>
-  	<tr>
-	<td><%= link_to game.name, waiting_area_path(game.id) %></td>
-	<td><%= game.description %></td>
-	<td>location</td>
-	</tr>
-	<% end %>
 
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
+  			<% @games.each do |g| %>
 
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-	<% @games.each do |game| %>
-  	<tr>
-	<td><%= game.name %></td>
-	<td><%= game.description %></td>
-	<td>Location</td>
-	</tr>
-	<% end %>
-
-  <!-- <tr>
-    <td>Value 1</td>
-    <td>Value 2</td>
-    <td>Value 3</td>
-  </tr>
-  -->
+				<% g.users.each do |u| %>
+					<tr>
+						<td><%= u.display_name %></td>
+						<td><%= link_to g.name, waiting_area_path(g.id) %></td>
+						<td><%= g.description %></td>
+						<td><%= u.city + " - " + u.add_l1 %></td>
+					</tr>
+				<% end %>
+			<% end %>		
   </table>
-</div>
 </div>
 </div>
 
