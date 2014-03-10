@@ -7,7 +7,7 @@
 <% @games.each do |g| %>
 
 	<% g.users.each do |u| %>
-	<%= u.username %>
+	<%= u.username +"|"+ g.provides.where('user_id ='+u.id)%>
 	<% end %>
 
 <% end %>
