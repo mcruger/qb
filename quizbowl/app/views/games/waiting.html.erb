@@ -1,33 +1,23 @@
-<h1 style= "margin-bottom: 0px;"class = "text-center"><%= @game.name %></h1>
-<h3 class = "text-center"><%= @game.description %> </h4>
-<h4 class = "text-center">708.343.2000  |  4003 W Lake St, Stone Park, IL 60165<h4>
-<h5 class = "text-center">********************** MAKE THIS ALL DYNAMIC INCLUDING NAMES, ADDRESS, PHONE, MAP COORDS ****************</h5>
+
+<h4 class = "text-center"><%= @Game[0].name %><h4>
+<h5 class = "text-center"><%= @Game[0].description %></h5>
+<h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>
 	<br><br>
 <div class="row">
 
-	<div class="one columns">
-	</div>
+<table>
+<tr>
+	<td>Users waiting...</td>
+</tr>
+<% @players.each do |player| %>
+	<tr>
+		<td><%= player.username %></td>
+	</tr>
+<% end %>
+</table>
 
 
-		<div style=" overflow: auto; float:left; height: 400px; width: 495px;">
-			<table style="width: 475px;" cellpadding="0" cellspacing="0">
-				<% @users.each do |u| %>
-				<tr>
-				<td><%= u.username %></td>
-				</tr>
-				<% end %>
-			</table>
-		
-		
-	</div>
 
-	<div style="float:right;width:475px;">
-		<div id="map-canvas"></div>
-		<h5 class = "text-center"><i>Maps Provided by Google</i></h5>
-	</div>
-
-	<div class="one columns">
-	</div>
 
 </div>
 <br><br>

@@ -34,35 +34,17 @@ class GamesController < ApplicationController
 	end
 
 	def waiting
-		#the_game_id = params["game_id"]
 
-    	#@game = Game.find_by :id => the_game_id	
-
-    	##@players = Player.all.where("game_id = 1")
-
-    	#user_ids = ""
-    	#@players.each do |p|
-    	#	user_ids += p.user_id.to_s() + ","	
-    	#end
-
-    	#@users = User.all.where("id IN("+user_ids[0...-1]+")")
-  	  	#puts @game
-   	
-   		#@Game = Game.includes(:users).where("id = ?"i 1)
-    	
    		provide_id = params["provide_id"]
 
    		#get game and user details for the provided game
-    	@Game = Game.joins(:provides).where(provides: { id: 1 })
-    	@provider = User.joins(:provides).where(provides: { id: 1 })
+   		@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
+    	@provider = User.joins(:provides).where("provides.id = ?", provide_id )
 
     	#get the users who are playing the game 
-   		#@players = User.joins(:players).where(provides: { id: 1 })
+   		@players = User.includes(players: :provide).where("provides.id = ?", 1 )
 
-		#@games = Game.includes(provides: :user).where(games: { id: 1 })
-    	@players = User.includes(players: :provide).where(provides: { id: 1 })
-
-    	render 'waiting2'
+    	render 'waiting'
 
 
 	end
