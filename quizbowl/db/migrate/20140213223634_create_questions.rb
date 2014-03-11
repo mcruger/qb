@@ -80,6 +80,7 @@ class CreateQuestions < ActiveRecord::Migration
 	create_table :provides do |t|
 		t.belongs_to :user
 		t.belongs_to :game
+    t.boolean :game_running
 	end
 
   #results

@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
 	def index
 		#displays all available games
-		@games = Game.includes(:users)
+		@games = Game.all
 
 	end
 
@@ -34,7 +34,8 @@ class GamesController < ApplicationController
 	end
 
 	def waiting
-		#the_game_id = params["game_id"]
+		the_game_id = params["game_id"]
+
     	#@game = Game.find_by :id => the_game_id	
 
     	##@players = Player.all.where("game_id = 1")
@@ -47,7 +48,9 @@ class GamesController < ApplicationController
     	#@users = User.all.where("id IN("+user_ids[0...-1]+")")
     	#puts @game
 
-    	@games = Game.includes(:users).where("id = ?", 1)
+    	#@Game = Game.includes(:users).where("id = ?", 1)
+    	@Games = Game.includes(provides: :user).where(games: { id: 1 })
+
     	render 'waiting2'
 
 

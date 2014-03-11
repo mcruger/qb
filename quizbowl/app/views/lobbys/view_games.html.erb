@@ -27,20 +27,16 @@
 	  			<td><b>Location</b></td>
 			</tr>
 
-  			<% @games.each do |g| %>
-  			
+			<% @games.each do |g| %>
+			  <% g.provides.each do |p| %>
+			    <tr>
+			      <td><%= link_to g.name, waiting_area_path(p.id) %></td>
+			      <td><%= g.description %></td>
+			      <td><%= "#{p.user.city} - #{p.user.add_l1}" %></td>
+			    </tr>
+			  <% end %>
+			<% end %>
 
-
-				<% g.users.each do |u| %>
-					<tr>
-						<td><%= u.display_name %></td>
-						<td><%= link_to g.name, waiting_area_path(g.id, u.id) %></td>
-						<td><%= g.description %></td>
-						<td><%= u.city + " - " + u.add_l1 %></td>
-					</tr>
-				<% end %>
-
-			<% end %>		
   </table>
 </div>
 </div>

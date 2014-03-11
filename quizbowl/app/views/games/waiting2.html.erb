@@ -1,16 +1,22 @@
 
-<h4 class = "text-center">708.343.2000  |  4003 W Lake St, Stone Park, IL 60165<h4>
+<h4 class = "text-center">wait<h4>
 <h5 class = "text-center">********************** MAKE THIS ALL DYNAMIC INCLUDING NAMES, ADDRESS, PHONE, MAP COORDS ****************</h5>
 	<br><br>
 <div class="row">
 
-<% @games.each do |g| %>
 
-	<% g.users.each do |u| %>
-	<%= u.username +"|"+ g.provides.where('user_id ='+u.id)%>
-	<% end %>
-
+<% @Games.each do |g| %>
+  <% g.provides.each do |p| %>
+    <tr>
+      <td><%= link_to g.name, waiting_area_path(g, p.user) %></td>
+      <td><%= g.description %></td>
+      <td><%= "#{p.user.city} - #{p.user.add_l1}" %></td>
+    </tr>
+  <% end %>
 <% end %>
+
+
+
 
 </div>
 <br><br>

@@ -310,14 +310,14 @@ games = [
   {
     :name => "Bob's 500 Wing Special Today Only",
     :user_id => 3,
-    :description => "Wings, women and good times!",
+    :description => "Gotta know your wings for the... chicken dinner!",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
   },
   {
     :name => "Anna's Burger Challenge Is ON!",
     :user_id => 4,
-    :description => "Home of the wavy fries.",
+    :description => "General trivia - heavy on burgers.",
     :created_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M"),
     :updated_at => DateTime.strptime("3/1/2014 19:00", "%m/%d/%Y %H:%M")
   }]
@@ -338,7 +338,7 @@ games.each do |game|
 #PROVIDES (user provides a game)
 ####################
 
-  providers = [
+  provides = [
   {
     :user_id => 1,
     :game_id => 1
@@ -350,10 +350,11 @@ games.each do |game|
 
 Provide.destroy_all
 
-providers.each do |prov|
+provides.each do |prov|
 	p = Provide.new
 	p.user_id = prov[:user_id]
 	p.game_id = prov[:game_id]
+	p.game_running = 0
 	p.save
 end
 
