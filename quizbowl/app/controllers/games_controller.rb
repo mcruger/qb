@@ -34,7 +34,7 @@ class GamesController < ApplicationController
 	end
 
 	def waiting
-		the_game_id = params["game_id"]
+		#the_game_id = params["game_id"]
 
     	#@game = Game.find_by :id => the_game_id	
 
@@ -49,7 +49,9 @@ class GamesController < ApplicationController
     	#puts @game
 
     	#@Game = Game.includes(:users).where("id = ?", 1)
-    	@Games = Game.includes(provides: :user).where(games: { id: 1 })
+    	
+    	provide_id = params["provide_id"]
+    	@Users = User.includes(:provides).where(provides: { id: 1 })
 
     	render 'waiting2'
 

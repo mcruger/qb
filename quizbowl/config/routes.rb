@@ -11,7 +11,7 @@ Quizbowl::Application.routes.draw do
 
   get "/logout" => "sessions#destroy", as: 'logout'
 
-  get "/waiting/:game_id" => "games#waiting", as: 'waiting_area'
+  get "/waiting/:provide_id" => "games#waiting", as: 'waiting_area'
 
 # get "/logout" => "sessions#destroy", as: 'logout'
 
