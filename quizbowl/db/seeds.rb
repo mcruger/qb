@@ -340,11 +340,11 @@ games.each do |game|
 
   provides = [
   {
-    :user_id => 1,
+    :user_id => 3,
     :game_id => 1
   },
   {
-    :user_id => 2,
+    :user_id => 4,
     :game_id => 2
   }]
 
@@ -366,11 +366,11 @@ end
 	players = [
   {
     :user_id => 1,
-    :game_id => 1
+    :provide_id => 1
   },
   {
     :user_id => 2,
-    :game_id => 1
+    :provide_id => 1
   }]
 
 Player.destroy_all
@@ -378,7 +378,7 @@ Player.destroy_all
 players.each do |play|
 	p = Player.new
 	p.user_id = play[:user_id]
-	p.game_id = play[:game_id]
+	p.provide_id = play[:provide_id]
 	p.save
 end
 

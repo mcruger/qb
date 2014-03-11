@@ -49,12 +49,13 @@ ActiveRecord::Schema.define(version: 20140213223634) do
 
   create_table "players", force: true do |t|
     t.integer "user_id"
-    t.integer "game_id"
+    t.integer "provide_id"
   end
 
   create_table "provides", force: true do |t|
     t.integer "user_id"
     t.integer "game_id"
+    t.boolean "game_running"
   end
 
   create_table "questions", force: true do |t|

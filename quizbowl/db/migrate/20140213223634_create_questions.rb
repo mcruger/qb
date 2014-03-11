@@ -73,7 +73,7 @@ class CreateQuestions < ActiveRecord::Migration
 	#mapping table to map players to games
 	create_table :players do |t|
 		t.belongs_to :user
-		t.belongs_to :game
+		t.belongs_to :provide
 	end	
 
 	#mapping table to map hosts to games
