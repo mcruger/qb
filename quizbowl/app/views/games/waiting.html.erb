@@ -1,9 +1,14 @@
+<%
+require 'open-uri'
+require 'json'
+%>
 
 <h4 class = "text-center"><%= @Game[0].name %><h4>
 <h5 class = "text-center"><%= @Game[0].description %></h5>
 <h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>
 	<br><br>
 <div class="row">
+
 
 <table>
 <tr>
@@ -26,8 +31,34 @@
 <br><br>
 <h5 class = "text-center">
 
-<!-- user hosting game gets button to start game, others see users waiting to play game -->
 
+
+<!-- user is a player @p_id-->
+<% if @user_id = @provider[0].id%>
+<%= button_to 'Join', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
+<% end %>
 
 
 </h5>
+
+<% 
+
+loc = @provider[0].add_l1.to_s + "+" + @provider[0].city + "+" + @provider[0].state + "+" + @provider[0].zip.to_s
+
+loc.gsub!(" ","+")
+
+data = open("http://maps.googleapis.com/maps/api/geocode/json?address="+loc+"&sensor=false").read 
+
+data = JSON.parse(data)
+
+#output lat and long
+latitude = data['results'][0]['geometry']['location']["lat"].to_s
+longitude = data['results'][0]['geometry']['location']["lng"].to_s
+
+%>
+
+
+<script>    
+	      http://maps.googleapis.com/maps/api/geocode/output?parameters
+          google.maps.event.addDomListener(window, 'load', initialize('<%= latitude %>','<%= longitude %>'));
+</script>
