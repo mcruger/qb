@@ -37,6 +37,8 @@ class GamesController < ApplicationController
 
    		provide_id = params["provide_id"]
 
+   		@user_id = session[:user_id];
+
    		#get game and user details for the provided game
    		@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
     	@provider = User.joins(:provides).where("provides.id = ?", provide_id )
