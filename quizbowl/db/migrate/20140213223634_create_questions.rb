@@ -26,7 +26,7 @@ class CreateQuestions < ActiveRecord::Migration
   		t.string :state
       t.string :sex
   		t.integer :zip
-      t.string :phone_num
+      t.string :phone
       t.string :display_name
       t.string :display_description
       t.string :add_l1
@@ -46,7 +46,7 @@ class CreateQuestions < ActiveRecord::Migration
   		t.string :state
   		t.integer :zip
   		t.integer :game_count
-  		t.string :phone_num
+  		t.string :phone
       t.string :password
       t.text :password_hint
   		t.timestamps

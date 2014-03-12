@@ -26,12 +26,20 @@ class UsersController < ApplicationController
     	user.password = params["password"]
         user.password_confirmation = params["password_confirmation"]
     	user.age = params["age"]
+        user.phone = params["phone"]
     	user.ranking = params["ranking"]
     	user.high_score = params["high_score"]
     	user.save
-        session[:user_id] = user.id
-    	@user = User.find_by :username => user.username
-    	redirect_to show_lobbys_url #make login go away and say welcome
+
+        if user.save
+            session[:user_id] = user.id
+            @user = User.find_by :username => user.username
+            UserMailer.welcome_email(@user).deliver
+            redirect_to show_lobbys_url
+        else
+            flash.now[:error] = "Profile not created successfully.  Please try again."
+            render new_user_path
+        end
 	end
 
 
@@ -56,7 +64,8 @@ class UsersController < ApplicationController
     	user.first = params["first"]
     	user.last = params["last"]
     	user.email = params["email"]
-        user.ad_l1 = params["add1"]
+        user.phone = params["phone"]
+        user.add_l1 = params["add1"]
     	user.city = params["city"]
     	user.state = params["state"]
     	user.zip = params["zip"]
