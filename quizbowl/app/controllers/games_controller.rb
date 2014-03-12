@@ -20,7 +20,6 @@ class GamesController < ApplicationController
 	end
 
 
-
 	def show
 		the_game_id = params["id"]
     	@game = Game.find_by :id => the_game_id
@@ -44,7 +43,10 @@ class GamesController < ApplicationController
     	@provider = User.joins(:provides).where("provides.id = ?", provide_id )
 
     	#get the users who are playing the game 
-   		@players = User.includes(players: :provide).where("provides.id = ?", 1 )
+   		@players = User.includes(players: :provide).where("provides.id = ?", provide_id )
+
+   		#pass without querying provides table
+   		@p_id = provide_id
 
     	render 'waiting'
 

@@ -6,6 +6,8 @@ Quizbowl::Application.routes.draw do
   resources :hosts
   resources :games
   resources :sessions
+  resources :provides
+  resources :players
 
   get "/lobbys" => "lobbys#view_games", as: 'show_lobbys'
 
@@ -13,7 +15,9 @@ Quizbowl::Application.routes.draw do
 
   get "/waiting/:provide_id" => "games#waiting", as: 'waiting_area'
 
-# get "/logout" => "sessions#destroy", as: 'logout'
+  #post "/join/:provide_id" => "games#join_game", as: 'join_game'
+  
+  #get "/logout" => "sessions#destroy", as: 'logout'
 
 =begin
   ############## USER ROUTES ###############
