@@ -26,7 +26,7 @@
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: 'Hello World!'
+            title: 'Map'
         });
       }
       </script>
@@ -104,6 +104,15 @@
   </section>
 
 </nav>
+
+<div class = "text-center">
+<% if flash[:error] -%>
+  <h1 class='error' style="color: red"><%=h flash[:error] %></h1>
+<% end -%>
+<% if flash[:notice] -%>
+  <h1 class='notice' style="color: blue"><%=h flash[:notice] %></h1>
+<% end -%>
+</div>
 
 <%= yield %>
 
