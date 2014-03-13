@@ -15,6 +15,8 @@ Quizbowl::Application.routes.draw do
 
   get "/waiting/:provide_id" => "games#waiting", as: 'waiting_area'
 
+  #patch '/provides/:id', to: 'provides#start_game', as: 'start_game'
+
   #post "/join/:provide_id" => "games#join_game", as: 'join_game'
   
   #get "/logout" => "sessions#destroy", as: 'logout'
