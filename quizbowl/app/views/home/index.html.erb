@@ -1,15 +1,23 @@
-<div class="row">
-<div class="small-9 small-centered columns">
-	<%= image_tag "QuizBowlLogo.png" %>
-</div>
-</div>
-<div class="row">
-<div class="small-6 small-centered text-center margin-left: 0px; columns">
-	<ul class="button-group fix_button_group">
-		<li><%= link_to 'Sign up!', new_user_path, :class => "button [radius round]" %></li>
-		<li><%= link_to 'Log In!', new_session_url, :class => "button [radius round]" %></li>
-<!-- 	<a href="#" class="button [radius round]">Radius Button</a>
-	<a href="#" class="button [radius round]">Radius Button</a> -->
-	</ul>
-</div>
-</div>
+
+
+<% if session[:user_id].blank? %>
+	<div class="row">
+	<div class="small-9 small-centered columns">
+		<%= image_tag "QuizBowlLogo.png" %>
+	</div>
+	</div>
+	<div class="row">
+	<div class="small-6 small-centered text-center margin-left: 0px; columns">
+		<ul class="button-group fix_button_group">
+			<li><%= link_to 'Sign up!', new_user_path, :class => "button [radius round]" %></li>
+			<li><%= link_to 'Log In!', new_session_url, :class => "button [radius round]" %></li>
+	<!-- 	<a href="#" class="button [radius round]">Radius Button</a>
+		<a href="#" class="button [radius round]">Radius Button</a> -->
+		</ul>
+	</div>
+	</div>
+<% else %>
+	<script type="text/javascript">
+    window.location.href="/lobbys"
+  </script>
+<% end %>

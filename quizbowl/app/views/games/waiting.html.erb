@@ -1,72 +1,56 @@
+<%
+require 'open-uri'
+require 'json'
+%>
 
-
-
-
-<h4 class = "text-center"><%= @Game[0].name %><h4>
-<h5 class = "text-center"><%= @Game[0].description %></h5>
-<h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>
+	<h4 class = "text-center"><%= @Game[0].name %><h4>
+	<h5 class = "text-center"><%= @Game[0].description %></h5>
+	<h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>
 	<br><br>
 
 
+	<div class="row">
+		<div class="large-1 columns myinline"></div>
+  		<div class="large-5 columns">
+			<table style="width: 480px; overflow: auto;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><b><u>Users waiting...</b></u></td>
+				</tr>
+					<% @players.each do |player| %>
+					<tr>
+						<td><%= player.username %></td>
+					</tr>
+					<% end %>
+			</table>
+		</div>
 
+				<div style="float:right;width:475px;">
+					<div id="map-canvas"> </div>
+						<h5 class = "text-center"><i>Maps Powered by Google</i></h5>
+					</div>
+				</div>
 
-<div class="row">
-
-<table>
-<tr>
-	<td>Users waiting...</td>
-</tr>
-<% @players.each do |player| %>
-	<tr>
-		<td><%= player.username %></td>
-	</tr>
-<% end %>
-</table>
-
-	<div style="float:right;width:475px;">
-		<script type="text/javascript">
-//		codeAddress('<%= @provider[0].add_l1.to_s  + ", " + @provider[0].city.to_s  + ", " + @provider[0].state.to_s + " " + @provider[0].zip.to_s %>');</script>
-		<h5 class = "text-center"><i>Maps Powered by Google</i></h5>
 	</div>
 
 
-</div>
-<br><br>
-<h5 class = "text-center">
 
-<!-- user hosting game gets button to start game, others see users waiting to play game -->
+	<br><br>
+	<h5 class = "text-center">
+		<!-- user is a player @p_id-->
+		<% if @user_id = @provider[0].id%>
+		<%= button_to 'Join', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
+		<% end %>
+	</h5>
 
-
-
-</h5>
-
-<script type="text/javascript">
-	var geocoder;
-	function initialize() {
-		geocoder = new google.maps.Geocoder();
-	}
-
-	function codeAddress(sAddress) {
-		//var sAddress = address;
-
-		geocoder.geocode({'address': sAddress}, funciton(results, status) {
-			if (status == google.maps.GeocoderStatus.OK){
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map: map,
-					position: results[0].geometry.location});
-
-			} else {
-				alert("Geocode was not successful for the following reason: " + status);
-
-			}
-
-
-		});
-	}
-
-</script>
-
-<script>    
-          google.maps.event.addDomListener(window, 'load', initialize(41.8519334,-87.7245571));
-</script>
+	<script type="text/javascript">
+	<% 
+	loc = @provider[0].add_l1.to_s + "+" + @provider[0].city + "+" + @provider[0].state + "+" + @provider[0].zip.to_s
+	loc.gsub!(" ","+")
+	data = open("http://maps.googleapis.com/maps/api/geocode/json?address="+loc+"&sensor=false").read 
+	data = JSON.parse(data)
+	#output lat and long
+	latitude = data['results'][0]['geometry']['location']["lat"].to_s
+	longitude = data['results'][0]['geometry']['location']["lng"].to_s
+	%>
+	google.maps.event.addDomListener(window, 'load', initialize('<%= latitude %>','<%= longitude %>'));
+	</script>
