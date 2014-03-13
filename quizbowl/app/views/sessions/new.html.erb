@@ -1,5 +1,5 @@
 
-
+<% if session[:user_id].blank? %>
 <%= form_tag "/sessions" do %>
 <div class="small-6 small-centered columns">
 	<h1>Sign In Here</h1>
@@ -18,4 +18,9 @@
 
 <%= button_tag("Log Me In!", type: "submit", class: "button [radius round]") %>
 </div>
+<% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/lobbys"
+  </script>
 <% end %>

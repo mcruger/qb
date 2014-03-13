@@ -27,23 +27,30 @@ require 'json'
 
 </script>
 
-<h4 class = "text-center"><%= @Game[0].name %><h4>
-<h5 class = "text-center"><%= @Game[0].description %></h5>
-<h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>
 	<br><br>
 <div class="row">
 
 
-<table>
-<tr>
-	<td>Users waiting...</td>
-</tr>
-<% @players.each do |player| %>
-	<tr>
-		<td><%= player.username %></td>
-	</tr>
-<% end %>
-</table>
+	<div class="row">
+		<div class="large-1 columns myinline"></div>
+  		<div class="large-5 columns">
+			<table style="width: 480px; overflow: auto;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><b><u>Users waiting...</b></u></td>
+				</tr>
+					<% @players.each do |player| %>
+					<tr>
+						<td><%= player.username %></td>
+					</tr>
+					<% end %>
+			</table>
+		</div>
+
+				<div style="float:right;width:475px;">
+					<div id="map-canvas"> </div>
+						<h5 class = "text-center"><i>Maps Powered by Google</i></h5>
+					</div>
+				</div>
 
 	<div style="float:right;width:475px;">
 		<div id="map-canvas"></div>
@@ -59,7 +66,7 @@ require 'json'
 
 <!-- user is a player @p_id-->
 <% if (@user_id == @provider[0].id) %>
-	<%= button_to 'Start Game', provide_path(@p_id), :method => "patch" %>
+	<%= button_to 'Start Game', provide_path(@p_id), :class => 'button [tiny small large]', :method => "patch" %>
 
 <% else %>
 	need to hide this if user has already joined game
