@@ -27,6 +27,11 @@ require 'json'
 
 </script>
 
+<h4 class = "text-center"><%= @provider[0].display_name %><h4>
+<h5 class = "text-center"><%= @Game[0].description %></h5>
+<h6 class = "text-center"><%= @provider[0].add_l1 + ", " + @provider[0].city%></h6>
+
+
 	<br><br>
 <div class="row">
 
@@ -52,11 +57,6 @@ require 'json'
 					</div>
 				</div>
 
-	<div style="float:right;width:475px;">
-		<div id="map-canvas"></div>
-		<h5 class = "text-center"><i>Maps Powered by Google</i></h5>
-	</div>
-
 
 </div>
 <br><br>
@@ -66,11 +66,14 @@ require 'json'
 
 <!-- user is a player @p_id-->
 <% if (@user_id == @provider[0].id) %>
+<%= button_to 'Start Game', provide_path(@p_id), :method => "patch" %>
+
 	<%= button_to 'Start Game', provide_path(@p_id), :class => 'button [tiny small large]', :method => "patch" %>
 
 <% else %>
 	need to hide this if user has already joined game
-    <%= button_to 'Join Game', :class => 'button [tiny small large]', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
+    <%= button_to 'Join Game', {:controller => 'players', :provide_id => @p_id, :user_id => @user_id}, :class => 'button [tiny small large]'%>
+
 <% end %>
 
 
@@ -92,8 +95,9 @@ longitude = data['results'][0]['geometry']['location']["lng"].to_s
 
 %>
 
+	
+
 
 <script>    
-	      http://maps.googleapis.com/maps/api/geocode/output?parameters
           google.maps.event.addDomListener(window, 'load', initialize('<%= latitude %>','<%= longitude %>'));
 </script>
