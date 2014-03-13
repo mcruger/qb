@@ -33,14 +33,7 @@ require 'json'
 	</div>
 
 
-
 	<br><br>
-	<h5 class = "text-center">
-		<!-- user is a player @p_id-->
-		<% if @user_id = @provider[0].id%>
-		<%= button_to 'Join', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
-		<% end %>
-	</h5>
 
 	<script type="text/javascript">
 	<% 
@@ -54,3 +47,16 @@ require 'json'
 	%>
 	google.maps.event.addDomListener(window, 'load', initialize('<%= latitude %>','<%= longitude %>'));
 	</script>
+
+
+
+<!-- user is a player @p_id-->
+<% if (@user_id == @provider[0].id) %>
+	<%= button_to 'Start Game', provide_path(@p_id), :class => 'button [tiny small large]', :method => "patch" %>
+
+<% else %>
+	need to hide this if user has already joined game
+    <%= button_to 'Join Game', :class => 'button [tiny small large]', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
+<% end %>
+
+
