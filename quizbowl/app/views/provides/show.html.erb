@@ -143,7 +143,7 @@ function check_answer(){
 		<!-- hidden field to hold time stamp of when question started -->
 		<%= hidden_field_tag 'time', 0 %>
 
-		<div class="score_pane" id='score_pane'>Score:
+		<div class="score_pane" id='score_pane' style = 'font-size: 40px; color: blue;'>Score:
 		<%= text_field_tag 'score', 0 %>
 		</div>
 
@@ -151,9 +151,9 @@ function check_answer(){
 		<% @questions.each do |q| %>
 
 			<div class="question" id='q_<%=q.id%>'>
-				<span class="timer" id='timer_q_<%=q.id%>' style='font:bold, size:20'></span>
+				<span class="timer" id='timer_q_<%=q.id%>' style = 'font-size: 30px; color: black;'></span>
 
-				<div class="question_num"> Question Number: <%= q_counter %></div>
+				<div class="question_num" style = 'font-size: 25px'> Question Number: <%= q_counter %></div>
 				<h1><%= q.question %></h1>
 				<!--need to get all answers for this question (by quesiton_id)-->
 				<br>

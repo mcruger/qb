@@ -62,8 +62,6 @@ require 'json'
 <br><br>
 <h5 class = "text-center">
 
-
-
 <!-- user is a player @p_id-->
 <% if (@user_id == @provider[0].id) %>
 <%= button_to 'Start Game', provide_path(@p_id), :method => "patch" %>
@@ -71,9 +69,14 @@ require 'json'
 	<%= button_to 'Start Game', provide_path(@p_id), :class => 'button [tiny small large]', :method => "patch" %>
 
 <% else %>
-	need to hide this if user has already joined game
-    <%= button_to 'Join Game', {:controller => 'players', :provide_id => @p_id, :user_id => @user_id}, :class => 'button [tiny small large]'%>
-
+<div class="row">
+<!-- 	<div class="small-6 small-centered text-center margin-left: 0px; columns"> -->
+		<ul class="button-group fix_button_group">
+		<li><%= link_to 'Back To Lobby', show_lobbys_path, :class => 'button [tiny small large]'%></li>
+    	<li><%= button_to 'Join Game', {:controller => 'players', :provide_id => @p_id, :user_id => @user_id}, :class => 'button [tiny small large]'%></li>
+		</ul>
+	<!-- </div> -->
+	</div>
 <% end %>
 
 
