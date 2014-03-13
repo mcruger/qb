@@ -34,8 +34,12 @@ require 'json'
 
 
 <!-- user is a player @p_id-->
-<% if @user_id = @provider[0].id%>
-<%= button_to 'Join', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
+<% if (@user_id == @provider[0].id) %>
+	<%= button_to 'Start Game', provide_path(@p_id), :method => "patch" %>
+
+<% else %>
+	need to hide this if user has already joined game
+    <%= button_to 'Join Game', :class => 'button [tiny small large]', :controller => 'players', :provide_id => @p_id, :user_id => @user_id%>
 <% end %>
 
 

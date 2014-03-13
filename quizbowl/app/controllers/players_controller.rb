@@ -18,7 +18,7 @@ class PlayersController < ApplicationController
 		p.user_id = user_id
 		p.provide_id = provide_id    	
     	p.save
-    	redirect_to show_lobbys_url
+    	redirect_to "/waiting/"+provide_id
 	end
 
 

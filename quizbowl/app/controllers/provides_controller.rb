@@ -29,12 +29,11 @@ class ProvidesController < ApplicationController
 		
 		provide_id = params["id"]
     	p = Provide.find_by(:id => provide_id)
-		p.game_playing = 1   	
+		p.game_running = 1   	
     	p.save
-    	redirect_to show_lobbys_url
+    	redirect_to "/waiting/"+provide_id
 
 	end
-
 
 	def destroy
 
