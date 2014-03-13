@@ -15,6 +15,16 @@ class ProvidesController < ApplicationController
 
 	end
 
+	def show
+
+		provide_id = params["id"]
+    	@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
+
+		@questions = Question.includes(:answers).where("game_id = ?", @Game[0].id)
+
+
+	end
+
 
 	def edit
 

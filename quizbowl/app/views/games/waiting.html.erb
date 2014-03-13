@@ -3,6 +3,30 @@ require 'open-uri'
 require 'json'
 %>
 
+<script>
+
+
+
+	$( document ).ready(function() {
+
+		var intervalID=setInterval(function(){ pollStatus() }, 5000);
+	});
+
+
+	function pollStatus(){
+		//alert("polling...");
+		
+		$.ajax({
+		  url: "test.html",
+		  context: document.body
+		}).done(function() {
+		  $( this ).addClass( "done" );
+		});
+
+	}
+
+</script>
+
 <h4 class = "text-center"><%= @Game[0].name %><h4>
 <h5 class = "text-center"><%= @Game[0].description %></h5>
 <h6 class = "text-center"><%= @provider[0].display_name + " - " + @provider[0].add_l1 + ", " + @provider[0].city%></h6>

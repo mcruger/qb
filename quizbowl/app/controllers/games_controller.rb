@@ -21,11 +21,11 @@ class GamesController < ApplicationController
 
 
 	def show
-		the_game_id = params["id"]
-    	@game = Game.find_by :id => the_game_id
+		provide_id = params["provide_id"]
+    	@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
 
   		#if @game.started == 1
-		@questions = Question.includes(:answers).where("game_id = ?", 1)
+		@questions = Question.includes(:answers).where("game_id = ?", @Game[0].id)
 		# else 
 			#render waiting_area_url
 		# end
