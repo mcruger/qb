@@ -1,4 +1,4 @@
-<script type="text/javascript" src="countdown_v3.3/countdown.js"></script>
+
 <script>
 //initializes game for play
 //hides everything and starts timer
@@ -34,16 +34,17 @@ $( document ).ready(function() {
 
 			var id = $(this).attr('id');
 			if (id.indexOf("true") !== -1){
-				cur_score = $('#score').val(); 
-				alert(cur_score);
+				//cur_score = $('#score').val(); 
+				//alert(cur_score);
 				s = $('#time').val();
 				var date = new Date();
 				var ntime = date.getTime();
 				var points = 22000 - (ntime - s);
-				alert("correct, score + " + points);
-				$('#score').val( (cur_score*1+points*1) );
+				//alert("correct, score + " + points);
+				$('#single_score').val(points*1);
 			}else{
-				alert("wrong");
+				//alert("wrong");
+				$('#single_score').val(0);
 			}
 
 		});
@@ -60,6 +61,12 @@ $( document ).ready(function() {
 //interval function that times each question
 function displayQuestion(questionIDs, intervalID, intervalVal)
 {
+	//alert($('#single_score').val());
+	//update score from previous question
+	var single = $('#single_score').val();
+	var points = $('#score').val();
+	$('#score').val( (single*1+points*1) );
+				
 	//init blank array to store question IDs
 	//for *this question 
 	var wrong_answerIDs = new Array();
@@ -73,7 +80,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
       		//alert('hello');          
       		$('#timer_'+questionIDs[(q_index_GLOBAL-1)]).html(i);  
       		clearTimeout(test1);              
-      		if (--i) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
+      		if (--i >= 0) timerLoop(i, questionIDs);      //  decrement i and call myLoop again if i > 0
    		}, 1000)
 		})(((intervalVal-2000)/1000), questionIDs);
 		
@@ -81,8 +88,6 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 
 		//for every interval (other than first), hide current div, show next div
 		if(is_first_GLOBAL==false){
-			
-
 
 			$("#"+questionIDs[(q_index_GLOBAL-1)]).toggle();
 			$("#"+questionIDs[(q_index_GLOBAL)]).insertBefore("#"+questionIDs[(q_index_GLOBAL-1)]);
@@ -121,7 +126,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
       		$('#'+wrong_answerIDs[i-1]).hide();
       		clearTimeout(test);	
       		if (--i >= 0) peelAnswersLoop(i, wrong_answerIDs);      //  decrement i and call again if i > 0
-   			}, (intervalVal/4)) 
+   			}, (intervalVal/3.3)) 
 		})(wrong_answerIDs.length, wrong_answerIDs);	
 		
 		q_index_GLOBAL++;
@@ -142,6 +147,7 @@ function check_answer(){
 		<div class="large-12 columns">
 		<!-- hidden field to hold time stamp of when question started -->
 		<%= hidden_field_tag 'time', 0 %>
+		<%= hidden_field_tag 'single_score', 0 %>
 
 		<div class="score_pane" id='score_pane' style = 'font-size: 40px; color: blue;'>Score:
 		<%= text_field_tag 'score', 0 %>
@@ -151,13 +157,15 @@ function check_answer(){
 		<% @questions.each do |q| %>
 
 			<div class="question" id='q_<%=q.id%>'>
-				<span class="timer" id='timer_q_<%=q.id%>' style = 'font-size: 30px; color: black;'></span>
+				<span class="timer" id='timer_q_<%=q.id%>' style = 'font-size: 30px; color: black;'>20</span>
 
 				<div class="question_num" style = 'font-size: 25px'> Question Number: <%= q_counter %></div>
 				<h1><%= q.question %></h1>
 				<!--need to get all answers for this question (by quesiton_id)-->
 				<br>
-				 <% q.answers.each do |a| %>
+				 <% ans_array = q.answers %>
+				 <% ans_array = ans_array.shuffle %>
+				 <% ans_array.each do |a| %>
 				 
 				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
 				 	<!-- note that answer_q_id is used for class
