@@ -4,7 +4,6 @@
 //hides everything and starts timer
 $( document ).ready(function() {
 
-
 	var questionIDs = new Array();
 	var is_first = true;
 	var cur_classID;
@@ -42,6 +41,7 @@ $( document ).ready(function() {
 				var points = 22000 - (ntime - s);
 				//alert("correct, score + " + points);
 				$('#single_score').val(points*1);
+
 			}else{
 				//alert("wrong");
 				$('#single_score').val(0);
@@ -84,7 +84,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
    		}, 1000)
 		})(((intervalVal-2000)/1000), questionIDs);
 		
-		if(q_index_GLOBAL != q_index_max_GLOBAL){
+	if(q_index_GLOBAL != q_index_max_GLOBAL){
 
 		//for every interval (other than first), hide current div, show next div
 		if(is_first_GLOBAL==false){
@@ -132,15 +132,47 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 		q_index_GLOBAL++;
 	}else{
 		//alert("END OF GAME");
+		$("#"+questionIDs[(q_index_GLOBAL-1)]).toggle();
+		$("#results").insertBefore("#"+questionIDs[(q_index_GLOBAL-1)]);
 		clearInterval(intervalID);
-		showResults();
+		showResults(questionIDs);
 	}
 }
 
-function showResults(){
+function showResults(questionIDs){
+	alert("here");
+	//wraps up the results and shows them to user
+	//note: assuming order of questions spit out to page doesn't change, question #s follow order in page
+	var correctAnswers = new Array();
+	var resultsHTML = "";
 
+	resultsHTML = "<table>";
+	resultsHTML += "<tr>";
+	resultsHTML += "<td>Question #</td>";
+	resultsHTML += "<td>Correct?</td>";
+	resultsHTML += "</tr>";
+	for (var i = 1; i <= questionIDs.length; i++)
+	{ 
+		resultsHTML += "<tr>";
+		resultsHTML += "<td>"+i+"</td>";
+		$('.answer_'+questionIDs[i]).each( function(i,e) {
+				cur_classID = "";
+    			cur_classID = $(e).attr('id');
 
-
+    			//only grab answers that are correct
+    			if(cur_classID.indexOf("true") !== -1){
+    				if($(e).is(':checked')){
+    					resultsHTML += "<td>Correct!</td>";
+    				}else{
+    					resultsHTML += "<td>Wrong!</td>";
+    				}
+	    		}
+		});
+		resultsHTML += "</tr>";
+	}
+	resultsHTML += "</table>"; 
+	alert(resultsHTML);
+	$('#results').html(resultsHTML);
 }
 
 </script>
@@ -175,10 +207,14 @@ function showResults(){
 
 			       <br>
 			    <% end %>
+
 			</div>
 			<br>
 			<br>
 			<% q_counter += 1 %>
 		<% end %>
+	</div>
+	<div id="results">
+		asdfasdfasdfasdf
 	</div>
 </div>

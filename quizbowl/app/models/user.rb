@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     	self.add_l1 = add_l1.gsub(/[^0-9A-Za-z\s]/, '') if attribute_present?("add_l1")
   	end
 
-	before_validation(on: :create) do
+	  before_validation(on: :create) do
     	self.first = first.gsub(/[^A-Za-z\s]/, '').titleize if attribute_present?("first")
   	end
 
