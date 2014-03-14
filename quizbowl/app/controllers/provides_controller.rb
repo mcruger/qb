@@ -12,27 +12,18 @@ class ProvidesController < ApplicationController
 
 	def create
 		#create a new game in db
-
 	end
 
 	def show
-
 		provide_id = params["id"]
     	@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
 
 		@questions = Question.includes(:answers).where("game_id = ?", @Game[0].id)
-
-
 	end
-
 
 	def edit
 
-
-
 	end
-
-
 
 	def update
 		#update provided games

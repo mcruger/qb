@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	before_validation(on: :create) do
+	  before_validation(on: :create) do
     	self.phone = phone.gsub(/[^0-9]/, "") if attribute_present?("phone")
   	end
 
