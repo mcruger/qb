@@ -199,11 +199,11 @@ function showResults(questionIDs){
 				 <% ans_array = q.answers %>
 				 <% ans_array = ans_array.shuffle %>
 				 <% ans_array.each do |a| %>
-				 
+				 	
 				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
 				 	<!-- note that answer_q_id is used for class
 				 	so we can easily grab all answers -->
-				   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>'><%= a.answer %></span>
+				   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>' style="font-size: 20px; margin-bottom: 0px;"><%= a.answer %></span>
 
 			       <br>
 			    <% end %>
