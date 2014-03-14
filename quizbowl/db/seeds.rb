@@ -82,7 +82,7 @@ questions = [
 			 {:question => "What was George Washington's middle name?"},
 			 {:question => "If you were to whip your head back and forth, you would lose approximately how many brain cells per whip?"},
 			 {:question => "Which fact about water is untrue?"},
-			 {:question => "What is most likely to happen in a horor movie when a girl gets into a car?"},
+			 {:question => "What is most likely to happen in a horror movie when a girl gets into a car?"},
 			 {:question => "The Star Wars series contributed about how much to the personal net worth of George Lucas?"}
 			 ]
 
@@ -117,7 +117,7 @@ answers = [{:question_id => 1,        #question 1
 			:answer => "Cricket",
 			:is_correct => 1},         
 			{:question_id => 1,
-			:answer => "Badminton",
+			:answer => "Throwing a Rope",
 			:is_correct => 0},
 			{:question_id => 2,      #question 2
 			:answer => "Suring up a seam",
@@ -184,7 +184,7 @@ answers = [{:question_id => 1,        #question 1
 			:answer => "7",
 			:is_correct => 0},
 			{:question_id => 7,
-			:answer => "5",
+			:answer => "8",
 			:is_correct => 0},
 			{:question_id => 7,
 			:answer => "5",
