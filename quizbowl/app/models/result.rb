@@ -1,4 +1,4 @@
 class Result < ActiveRecord::Base
-	belongs_to :game
+	belongs_to :provide
 	belongs_to :user
 end

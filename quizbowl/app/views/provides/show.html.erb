@@ -131,12 +131,13 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 		
 		q_index_GLOBAL++;
 	}else{
-		alert("END OF GAME");
+		//alert("END OF GAME");
 		clearInterval(intervalID);
+		showResults();
 	}
 }
 
-function check_answer(){
+function showResults(){
 
 
 
