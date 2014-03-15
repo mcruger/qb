@@ -14,7 +14,7 @@ config.action_mailer.default :charset => "utf-8"
 :port                 => 587,
 :domain               => "qb.com",
 :user_name            => "qbexample@gmail.com",
-:password             => "qbexample1",
+:password             => "qbexample111",
 :authentication       => "plain",
 :enable_starttls_auto => true
 }
