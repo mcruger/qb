@@ -30,23 +30,6 @@ ActiveRecord::Schema.define(version: 20140213223634) do
     t.datetime "updated_at"
   end
 
-  create_table "hosts", force: true do |t|
-    t.string   "host_name"
-    t.string   "primary_contact_name"
-    t.string   "email"
-    t.string   "add_l1"
-    t.string   "add_l2"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
-    t.integer  "game_count"
-    t.string   "phone"
-    t.string   "password"
-    t.text     "password_hint"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "players", force: true do |t|
     t.integer "user_id"
     t.integer "provide_id"
@@ -67,10 +50,8 @@ ActiveRecord::Schema.define(version: 20140213223634) do
 
   create_table "results", force: true do |t|
     t.integer "user_id"
-    t.integer "game_id"
+    t.integer "provide_id"
     t.integer "score"
-    t.integer "place"
-    t.integer "total_players"
   end
 
   create_table "subjects", force: true do |t|

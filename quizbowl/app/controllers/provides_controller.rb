@@ -16,6 +16,9 @@ class ProvidesController < ApplicationController
 
 	def show
 		provide_id = params["id"]
+		@p_id = provide_id
+		@user_id = session['user_id']
+		
     	@Game = Game.joins(:provides).where("provides.id = ?", provide_id )
 
 		@questions = Question.includes(:answers).where("game_id = ?", @Game[0].id)

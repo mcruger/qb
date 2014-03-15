@@ -15,7 +15,7 @@ $( document ).ready(function() {
 	var questionIDs = new Array();
 	var is_first = true;
 	var cur_classID;
-
+	$("#results").toggle();
 	$('.question').each( function(i,e) { 
 		cur_classID = "";
     	cur_classID = $(e).attr('id');
@@ -41,17 +41,17 @@ $( document ).ready(function() {
 
 			var id = $(this).attr('id');
 			if (id.indexOf("true") !== -1){
-				//cur_score = $('#score').val(); 
+				cur_score = $('#score').val(); 
 				//alert(cur_score);
 				s = $('#time').val();
 				var date = new Date();
 				var ntime = date.getTime();
 				var points = 22000 - (ntime - s);
-				//alert("correct, score + " + points);
+				alert("correct, score + " + points);
 				$('#single_score').val(points*1);
 
 			}else{
-				//alert("wrong");
+				alert("wrong");
 				$('#single_score').val(0);
 			}
 
@@ -72,6 +72,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 	//alert($('#single_score').val());
 	//update score from previous question
 	var single = $('#single_score').val();
+	$('#single_score').val(0);
 	var points = $('#score').val();
 	$('#score').val( (single*1+points*1) );
 				
@@ -143,45 +144,22 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 		$("#"+questionIDs[(q_index_GLOBAL-1)]).toggle();
 		$("#results").insertBefore("#"+questionIDs[(q_index_GLOBAL-1)]);
 		clearInterval(intervalID);
-		showResults(questionIDs);
+		showResults();
 	}
 }
 
-function showResults(questionIDs){
+
+function showResults(){
 	alert("here");
 	//wraps up the results and shows them to user
 	//note: assuming order of questions spit out to page doesn't change, question #s follow order in page
-	var correctAnswers = new Array();
-	var resultsHTML = "";
-
-	resultsHTML = "<table>";
-	resultsHTML += "<tr>";
-	resultsHTML += "<td>Question #</td>";
-	resultsHTML += "<td>Correct?</td>";
-	resultsHTML += "</tr>";
-	for (var i = 1; i <= questionIDs.length; i++)
-	{ 
-		resultsHTML += "<tr>";
-		resultsHTML += "<td>"+i+"</td>";
-		$('.answer_'+questionIDs[i]).each( function(i,e) {
-				cur_classID = "";
-    			cur_classID = $(e).attr('id');
-
-    			//only grab answers that are correct
-    			if(cur_classID.indexOf("true") !== -1){
-    				if($(e).is(':checked')){
-    					resultsHTML += "<td>Correct!</td>";
-    				}else{
-    					resultsHTML += "<td>Wrong!</td>";
-    				}
-	    		}
-		});
-		resultsHTML += "</tr>";
-	}
-	resultsHTML += "</table>"; 
-	alert(resultsHTML);
-	$('#results').html(resultsHTML);
+	$('#res_provide_id').val($('#provide_id').val());
+	$('#res_user_id').val($('#user_id').val());
+	$('#res_score').val($("#score").val());
+	$('#results').toggle();
 }
+
+
 
 </script>
 <div class="row">
@@ -190,8 +168,12 @@ function showResults(questionIDs){
 		<%= hidden_field_tag 'time', 0 %>
 		<%= hidden_field_tag 'single_score', 0 %>
 
+
 		<div class="score_pane" id='score_pane' style = 'font-size: 40px; color: blue;'>Score:
 		<%= text_field_tag 'score', 0 %>
+		<%= hidden_field_tag 'provide_id', @p_id %>
+        <%= hidden_field_tag 'user_id', @user_id %>
+
 		</div>
 
 		<% q_counter = 1 %>
@@ -208,7 +190,7 @@ function showResults(questionIDs){
 				 <% ans_array = ans_array.shuffle %>
 				 <% ans_array.each do |a| %>
 				 	
-				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer" %>
+				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer"%>
 				 	<!-- note that answer_q_id is used for class
 				 	so we can easily grab all answers -->
 				   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>' style="font-size: 20px; margin-bottom: 0px;"><%= a.answer %></span>
@@ -223,7 +205,19 @@ function showResults(questionIDs){
 		<% end %>
 	</div>
 	<div id="results">
-		asdfasdfasdfasdf
+
+	  Thanks for playing!
+		
+	<%= form_tag(update_results_path, :method => 'post') do %>
+      <%= hidden_field_tag :res_provide_id, 0 %>
+      <%= hidden_field_tag :res_user_id, 0 %>
+      <%= hidden_field_tag :res_score, 0 %>
+      <br>
+      <button type="submit" class="button [tiny small large]">Submit your score!</button>
+    	</form>
+	<% end%>
+		
+
 	</div>
 </div>
 

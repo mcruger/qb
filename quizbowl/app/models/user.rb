@@ -43,12 +43,14 @@ class User < ActiveRecord::Base
   	validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }, presence: true
   	validates :first, length: { maximum: 15 }, presence: true
 
-	has_many :players
-	has_many :provides, through: :players
-	
-	has_many :provides
-	has_many :games, through: :provides
-	
-	has_one :user_type
-	has_secure_password
+  	has_many :players
+  	has_many :provides, through: :players
+  	
+  	has_many :provides
+  	has_many :games, through: :provides
+  	
+    has_many :results
+
+  	has_one :user_type
+  	has_secure_password
 end

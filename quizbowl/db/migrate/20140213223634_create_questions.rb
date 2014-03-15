@@ -36,22 +36,6 @@ class CreateQuestions < ActiveRecord::Migration
   		t.timestamps
   	end
 
-  	create_table :hosts do |t|
-  		t.string :host_name
-      t.string :primary_contact_name
-  		t.string :email
-  		t.string :add_l1
-  		t.string :add_l2
-  		t.string :city
-  		t.string :state
-  		t.integer :zip
-  		t.integer :game_count
-  		t.string :phone
-      t.string :password
-      t.text :password_hint
-  		t.timestamps
-  	end	
-
   	create_table :usertypes do |t|
   		t.string :name
   		t.timestamps
@@ -86,35 +70,9 @@ class CreateQuestions < ActiveRecord::Migration
   #results
   create_table :results do |t|
     t.belongs_to :user
-    t.belongs_to :game
+    t.belongs_to :provide
     t.integer :score
-    t.integer :place
-    t.integer :total_players
   end
-
-=begin
-    #removed and just use 1 user as host and player...
-    create_table :hosts do |t|
-      t.string :host_name
-      t.string :primary_contact_name
-      t.string :email
-      t.string :add_l1
-      t.string :add_l2
-      t.string :city
-      t.string :state
-      t.integer :zip
-      t.integer :game_count
-      t.string :phone_num
-      t.string :password
-      t.text :password_hint
-      t.timestamps
-    end 
-    
-    create_table :hosttypes do |t|
-      t.string :name
-      t.timestamps
-    end 
-=end
 
   end
 end
