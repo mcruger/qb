@@ -1,3 +1,5 @@
+<% if session[:user_id].blank? %>
+
 <div class="row">
 <div class="large-6 columns">
   <%= image_tag "QuizBowlLogo.png" %>
@@ -68,3 +70,10 @@
 <% end%>
 </div>
 </div>
+
+
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/lobbys"
+  </script>
+<% end %>

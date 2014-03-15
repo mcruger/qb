@@ -1,3 +1,11 @@
+<% if session[:user_id].blank? %>
+
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+
+<% else %>
+
 <script type="text/javascript" src="countdown_v3.3/countdown.js"></script>
 <script>
 //initializes game for play
@@ -173,3 +181,6 @@ function check_answer(){
 		<% end %>
 	</div>
 </div>
+
+
+<% end %>

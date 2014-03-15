@@ -1,3 +1,11 @@
+<% if session[:user_id].blank? %>
+
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+
+<% else %>
+
 <h1 class = "text-center">Welcome To The Lobby!</h1>
 
 <h4 class = "text-center"> Please browse for a game, or search based on location, name, or player.</h4>
@@ -42,5 +50,5 @@
 </div>
 </div>
 
-
+<% end %>
 

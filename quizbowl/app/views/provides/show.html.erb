@@ -1,4 +1,12 @@
 
+<% if session[:user_id].blank? %>
+
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+
+<% else %>
+  
 <script>
 //initializes game for play
 //hides everything and starts timer
@@ -218,3 +226,5 @@ function showResults(questionIDs){
 		asdfasdfasdfasdf
 	</div>
 </div>
+
+<% end %>
