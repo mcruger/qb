@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     	user.age = params["age"]
         user.phone = params["phone"]
     	user.ranking = params["ranking"]
-    	user.high_score = params["high_score"]
+    	user.high_score = 0
     	user.save
 
         if user.save
@@ -80,6 +80,7 @@ class UsersController < ApplicationController
 		the_user_id = params["id"]
     	user = User.find_by(:id => the_user_id)
     	user.destroy
+        session.destroy
     	redirect_to root_url
 	end
 

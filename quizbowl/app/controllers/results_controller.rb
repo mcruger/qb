@@ -16,9 +16,9 @@ class ResultsController < ApplicationController
     		result.save
     	end
 
-    	user = User.find_by_user_id(params[:res_user_id])
-    	if (user.high_score < params[:res_score])
-    		user.high_score = params[:res_score]
+    	user = User.find_by(:id => params[:res_user_id])
+    	if (user.high_score < params[:res_score].to_i)
+    		user.high_score = params[:res_score].to_i
     		user.save
     	end
     	

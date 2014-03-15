@@ -34,7 +34,7 @@ $( document ).ready(function() {
 	q_index_GLOBAL = 0;
 	q_index_max_GLOBAL = questionIDs.length;
 	is_first_GLOBAL = true;
-	var intervalVal = 22000; //add 2 seconds for delay
+	var intervalVal = 5000; //add 2 seconds for delay
 
 		//note, hardcoded intervalVal, wasn't coming through for some reason...
 		$('.answer').click(function(intervalVal){
@@ -150,7 +150,7 @@ function displayQuestion(questionIDs, intervalID, intervalVal)
 
 
 function showResults(){
-	alert("here");
+	//alert("here");
 	//wraps up the results and shows them to user
 	//note: assuming order of questions spit out to page doesn't change, question #s follow order in page
 	$('#res_provide_id').val($('#provide_id').val());
