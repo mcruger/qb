@@ -9,10 +9,11 @@ class LobbysController < ApplicationController
 			@games = Game.includes(provides: :user)
 			
 		else
-
-			#@games = Game.includes(provides: :user).where()
-			@games = Game.includes(:provides, :users).where("games.name like ? OR users.city like ?", "%"+params["search"]+"%", "%"+params["search"]+"%")
 			@search_val = params["search"]
+			searchL = @search_val.downcase
+			#@games = Game.includes(provides: :user).where()
+			@games = Game.includes(:provides, :users).where("lower(games.name) like ? OR lower(games.description) like ? OR lower(users.city) like ? OR lower(users.add_l1) like ? OR lower(users.display_name) like ?", "%"+searchL+"%", "%"+searchL+"%", "%"+searchL+"%", "%"+searchL+"%", "%"+searchL+"%")
+			
 		end
 		
 	    

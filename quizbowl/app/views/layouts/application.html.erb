@@ -61,9 +61,9 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if session[:user_id].blank? %>
-      
+      <li><%= link_to 'Log In', new_session_url %></li>
       <% else %>
-      <li><%= link_to 'Log Out', logout_url %></li>
+      <li><%= link_to session[:username]+' - Log Out', logout_url %></li>
       
       <% end %>
       <!-- Note this is still here because in the future we will have things to add here. -->
@@ -86,7 +86,7 @@
       <% else %>
       <li><%= link_to 'My Profile', edit_user_url(session[:user_id]) %></li>
       <li><%= link_to 'Games Lobby', show_lobbys_url%></li>
-
+      <li><%= link_to 'View High Scores', high_scores_url%></li>
       <% end %>
     </ul>
   </section>

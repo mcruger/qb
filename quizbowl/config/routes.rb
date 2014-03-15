@@ -14,6 +14,8 @@ Quizbowl::Application.routes.draw do
 
   get "/waiting/:provide_id" => "games#waiting", as: 'waiting_area'
 
+  get "/high_scores" => "games#high_scores", as: 'high_scores'
+
   post "/results/:id" => "results#track_results", as: 'update_results'
 
   #patch '/provides/:id', to: 'provides#start_game', as: 'start_game'

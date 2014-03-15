@@ -8,7 +8,7 @@
 
 <h1 class = "text-center">Welcome To The Lobby!</h1>
 
-<h4 class = "text-center"> Please browse for a game, or search based on location, name, or player.</h4>
+<h4 class = "text-center"> Please browse for a game, or search based on location, game name/description, or host. </h4>
 <h5 class = "text-center"> When you're ready, choose a game and join... It's that simple.</h5>
 
 <div class="row">
@@ -18,7 +18,7 @@
   	<%= form_tag(show_lobbys_path, :method => 'get') do %>
 	  	<input type="submit" value="Find" style="float: left;" class="button [tiny small large]"/>
 		
-	    <input type="text" id="search" name="search" style="width: 717px; height: 45px" value="<%= @search_val %>" placeholder=" location, name, or player"  />
+	    <input type="text" id="search" name="search" style="width: 717px; height: 45px" value="<%= @search_val %>" placeholder=" location, name, description, or host"  />
 	<% end %>
 	</div>​
   </div>

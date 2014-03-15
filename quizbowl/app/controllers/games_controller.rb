@@ -3,27 +3,9 @@ class GamesController < ApplicationController
 	def index
 		#displays all available games
 		@games = Game.all
-
 	end
 
 
-
-	def new
-
-	end
-
-
-
-	def create
-		#create a new game in db
-
-	end
-
-
-	def show
-
-
-	end
 
 	def waiting
 
@@ -45,10 +27,19 @@ class GamesController < ApplicationController
 
 	end
 
-	def game_over
+	def high_scores
 
+		#high scores for all players
+		@high_scores = User.find(:all, :order => "high_score desc", :limit => 50)
+	end
 
+	def new
+	end
 
+	def create
+	end
+
+	def show
 	end
 
 	def edit

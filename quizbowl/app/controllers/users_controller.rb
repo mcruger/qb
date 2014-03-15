@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
         if user.save
             session[:user_id] = user.id
+            session[:username] = user.username
             @user = User.find_by :username => user.username
             UserMailer.welcome_email(@user).deliver
             redirect_to show_lobbys_url

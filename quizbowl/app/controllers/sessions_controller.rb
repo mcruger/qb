@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     if user
       if user.authenticate(params[:password])
         session[:user_id] = user.id
+        session[:username] = user.username
         redirect_to show_lobbys_url #, notice: "Welcome Back, #{user.username}"
       else
         redirect_to root_url #, notice: "Bad Password"
