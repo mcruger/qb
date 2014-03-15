@@ -34,7 +34,7 @@ $( document ).ready(function() {
 	q_index_GLOBAL = 0;
 	q_index_max_GLOBAL = questionIDs.length;
 	is_first_GLOBAL = true;
-	var intervalVal = 5000; //add 2 seconds for delay
+	var intervalVal = 22000; //add 2 seconds for delay
 
 		//note, hardcoded intervalVal, wasn't coming through for some reason...
 		$('.answer').click(function(intervalVal){
@@ -193,8 +193,9 @@ function showResults(){
 				 	<%= radio_button_tag q.id.to_s(), a.id.to_s()+'_'+a.is_correct.to_s(), false, class: "answer"%>
 				 	<!-- note that answer_q_id is used for class
 				 	so we can easily grab all answers -->
+				   <label for="<%=q.id.to_s()+'_'+a.id.to_s()+'_'+a.is_correct.to_s()%>">
 				   <span class="answer_q_<%=q.id%>" id='<%=a.id%>_<%=a.is_correct%>' style="font-size: 20px; margin-bottom: 0px;"><%= a.answer %></span>
-
+				   </label>
 			       <br>
 			    <% end %>
 
