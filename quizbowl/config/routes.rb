@@ -3,13 +3,12 @@ Quizbowl::Application.routes.draw do
   root 'home#index'									#uses homes_controller to render the home page
 
   resources :users
-  resources :hosts
   resources :games
   resources :sessions
   resources :provides
   resources :players
 
-  get "/lobbys" => "lobbys#view_games", as: 'show_lobbys'
+  get "/lobbys/" => "lobbys#view_games", as: 'show_lobbys'
 
   get "/logout" => "sessions#destroy", as: 'logout'
 
