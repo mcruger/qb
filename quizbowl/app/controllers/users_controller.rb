@@ -27,9 +27,9 @@ class UsersController < ApplicationController
         user.password_confirmation = params["password_confirmation"]
     	user.age = params["age"]
         user.phone = params["phone"]
-    	user.ranking = params["ranking"]
     	user.high_score = 0
     	user.save
+
 
         if user.save
             session[:user_id] = user.id
@@ -38,7 +38,26 @@ class UsersController < ApplicationController
             UserMailer.welcome_email(@user).deliver
             redirect_to show_lobbys_url
         else
-            flash.now[:error] = "Profile not created successfully.  Please try again."
+            if user.errors[:username]
+                flash.now[:error] = "Username is not unique or not provided - please try again." 
+            else    
+                flash.now[:error] = "Profile not created successfully.  Please try again."
+            end
+
+            @username = params["username"]
+            @first = params["first"]
+            @last = params["last"]
+            @sex = params["sex"]
+            @email = params["email"]
+            @add_l1 = params["add_l1"]
+            @city = params["city"]
+            @state = params["state"]
+            @zip = params["zip"]
+            @password = params["password"]
+            @password_confirmation = params["password_confirmation"]
+            @age = params["age"]
+            @phone = params["phone"]
+
             render new_user_path
         end
 	end

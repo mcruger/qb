@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   	end 	
 
   	validates :username, presence: true
+    validates_uniqueness_of :username, :case_sensitive => false
   	validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }, presence: true
   	validates :first, length: { maximum: 15 }, presence: true
 

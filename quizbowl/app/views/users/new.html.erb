@@ -11,25 +11,25 @@
 
 <%= form_tag users_url, :method => 'post' do %>
       <%= label_tag :username %>
-      <%= text_field_tag :username, "", placeholder: "Username" %>
+      <%= text_field_tag :username, "", placeholder: "Username", value: @username %>
       <%= label_tag :first %>
-      <%= text_field_tag :first, "", placeholder: "First Name" %>
+      <%= text_field_tag :first, "", placeholder: "First Name", value: @first %>
       <%= label_tag :last %>
-      <%= text_field_tag :last, "", placeholder: "Last Name" %>
+      <%= text_field_tag :last, "", placeholder: "Last Name", value: @last %>
       <%= label_tag :age %>
-      <%= text_field_tag :age, "", placeholder: "Age" %>
+      <%= text_field_tag :age, "", placeholder: "Age", value: @age %>
       <%= label_tag :email %>
-      <%= text_field_tag :email, "", placeholder: "Email" %>
+      <%= text_field_tag :email, "", placeholder: "Email", value: @email %>
       <%= label_tag :phone %>
-      <%= text_field_tag :phone, "", placeholder: "Phone" %>
+      <%= text_field_tag :phone, "", placeholder: "Phone", value: @phone %>
       <%= label_tag :Address %>
-      <%= text_field_tag :add_l1, "", placeholder: "St Address" %>
+      <%= text_field_tag :add_l1, "", placeholder: "St Address", value: @add_l1 %>
       <%= label_tag :city %>
-      <%= text_field_tag :city, "", placeholder: "City" %>
+      <%= text_field_tag :city, "", placeholder: "City", value: @city %>
       <%= label_tag :state %>
-      <%= text_field_tag :state, "", placeholder: "State" %>
+      <%= text_field_tag :state, "", placeholder: "State", value: @state %>
       <%= label_tag :zip %>
-      <%= text_field_tag :zip, "", placeholder: "Zip" %>
+      <%= text_field_tag :zip, "", placeholder: "Zip", value: @zip %>
       <%= label_tag :password %>
       <%= password_field_tag :password, "", placeholder: "Password" %>
       <div class="form-group">
